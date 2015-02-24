@@ -20,7 +20,7 @@ namespace Project_IC.Framework.GSM {
 
 		protected internal ScreenManager ScreenManager;
 		#endregion
-
+		
 		#region Properties
 		public bool Active {
 			get { return HasFocus && (ScreenState == GSM.ScreenState.TransitionOn ||

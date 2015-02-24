@@ -42,6 +42,13 @@ namespace Project_IC.Framework.GSM {
 				GraphicsDeviceManager.ApplyChanges();
 			}
 		}
+		public bool MultiSampling {
+			get { return GraphicsDeviceManager.PreferMultiSampling; }
+			set {
+				GraphicsDeviceManager.PreferMultiSampling = value;
+				GraphicsDeviceManager.ApplyChanges();
+			}
+		}
 		#endregion
 
 		public ScreenManager(Game game, GraphicsDeviceManager graphics)

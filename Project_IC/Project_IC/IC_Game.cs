@@ -45,7 +45,8 @@ namespace Project_IC {
 
 			IsFixedTimeStep = false;
 			graphics.SynchronizeWithVerticalRetrace = false;
-
+			graphics.PreferMultiSampling = false;			
+			
 			graphics.PreferredBackBufferWidth = 1280;
 			graphics.PreferredBackBufferHeight = 720;
 		}

@@ -89,6 +89,10 @@
     <Compile Include="Framework\Gui\DarkThemeVisuals.cs" />
     <Compile Include="Framework\Gui\GuiManager.cs" />
     <Compile Include="Framework\Gui\Visuals.cs" />
+    <Compile Include="Framework\Lighting\EndPoint.cs" />
+    <Compile Include="Framework\Lighting\LightManager.cs" />
+    <Compile Include="Framework\Lighting\RadialLight.cs" />
+    <Compile Include="Framework\Lighting\Segment.cs" />
     <Compile Include="Framework\ParticleSystem\ParticleEmitters\ParticleEmitter.cs" />
     <Compile Include="Framework\ParticleSystem\ParticleEmitters\SnowEmitter.cs" />
     <Compile Include="Framework\ParticleSystem\ParticleManager.cs" />

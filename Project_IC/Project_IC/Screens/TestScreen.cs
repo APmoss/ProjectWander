@@ -17,7 +17,9 @@ namespace Project_IC.Screens {
 		ParticleManager part;
 		Camera cam;
 
-		Label labbell = new Label(0, 100, "asdasdasdasdasdasdadsasdasd");
+		Label labbell = new Label(0, 100, "THIS IS A TEST THAT MOVES REALLY FAST THAT YOU CAN'T READ AT FULL SPEED UNTIL I PRESS A BUTTONTHAT SLOWS DOWN TIME BECAUSE I CAN CONTROL " +
+											"TIME ISN'T THAT AWESOME I BET YOUR GAME IS NOT AS COOL AS THIS ONE HAHAHAH");
+		float labbellX = 0;
 		Window pannell = new Window(0, 300, 500, 300, "Title test thing blah", true);
 		Button buttonn = new Button(100, 40, 300, "asd");
 
@@ -26,6 +28,15 @@ namespace Project_IC.Screens {
 		Effect e;
 		Random r = new Random();
 
+		VertexBuffer vb;
+		BasicEffect be;
+		VertexPositionColor[] verts = new VertexPositionColor[6] {new VertexPositionColor(new Vector3(-640, 260, -100), Color.Red),
+																	new VertexPositionColor(new Vector3(-540, 360, -100), Color.Green),
+																	new VertexPositionColor(new Vector3(0, 0, -100), Color.Blue),
+																	new VertexPositionColor(new Vector3(640, 260, -100), Color.Red),
+																	new VertexPositionColor(new Vector3(540, 360, -100), Color.Green),
+																	new VertexPositionColor(new Vector3(0, 0, -100), Color.Blue)};
+
 		public TestScreen() {
 			
 		}
@@ -33,7 +44,7 @@ namespace Project_IC.Screens {
 		public override void LoadContent() {
 			gui = new GuiManager(new DarkThemeVisuals(ScreenManager));
 			//TODO: FIX THIS WITH SCREEN RESOLUTION
-			gui.BaseScreen.Bounds = ScreenManager.Game.GraphicsDevice.Viewport.Bounds;
+			gui.BaseScreen.Bounds = new Rectangle(0, 0, ScreenManager.Res.X, ScreenManager.Res.Y);
 			gui.BaseScreen.Hidden = true;
 			labbell.Bounds.Height = labbell.Bounds.Width = 100;
 			pannell.AddControls(buttonn);
@@ -55,6 +66,7 @@ namespace Project_IC.Screens {
 			part.AddParticleEmitters(new List<ParticleEmitter>() { new SnowEmitter(new Rectangle(0, -200, 1280 + 600, 720)) });
 
 			cam = new Camera(ScreenManager.Res.X, ScreenManager.Res.Y);
+			cam.DestPosition = cam.TransPosition = new Vector2(500, 300);
 
 			texturree = ScreenManager.Game.Content.Load<Texture2D>("textures/darkThemeGuiSheet");
 			sampleBackground = ScreenManager.Game.Content.Load<Texture2D>("city");
@@ -62,15 +74,29 @@ namespace Project_IC.Screens {
 
 			TmxMap tmxMap = TmxMap.Load("Content/testMap.tmx");
 
+			vb = new VertexBuffer(ScreenManager.GraphicsDevice, typeof(VertexPositionColor), verts.Length, BufferUsage.WriteOnly);
+
+			be = new BasicEffect(ScreenManager.GraphicsDevice);
+			be.World = Matrix.CreateTranslation(0, 0, 0);
+			be.View = Matrix.CreateLookAt(new Vector3(0, 0, 1), Vector3.Forward, Vector3.Up);
+			//be.Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 1280 / 720f, 0.01f, 100f);
+			be.Projection = Matrix.CreateOrthographic(1280, 720, -1000, 1000);
+			//be.Projection = Matrix.CreateOrthographicOffCenter(-640f, 640f, -360f, 360f, -1000f, 1000f);
+			be.VertexColorEnabled = true;
+			
 			base.LoadContent();
 		}
 
 		public override void Update(GameTime gameTime, bool hasFocus, bool covered) {
-			//for (int i = 0; i < 1000000; i++) ;
-
 			cam.Update();
 
 			part.Update(gameTime);
+
+			labbellX -= 700 * Stcs.PPS1(gameTime);
+			if (labbellX < -500) {
+				labbellX = ScreenManager.Res.X + 300; ;
+			}
+			labbell.Bounds.X = (int)labbellX;
 
 			pannell.Title = "Title test thing blah - " + part.ParticleCount;
 
@@ -89,6 +115,9 @@ namespace Project_IC.Screens {
 			}
 			if (input.IsKeyPressed(Keys.V)) {
 				ScreenManager.VSync = !ScreenManager.VSync;
+			}
+			if (input.IsKeyPressed(Keys.M)) {
+				ScreenManager.MultiSampling = !ScreenManager.MultiSampling;
 			}
 			if (input.IsKeyPressed(Keys.Z)) {
 				Stcs.TC = 0;
@@ -133,6 +162,11 @@ namespace Project_IC.Screens {
 				cam.DestPosition.X += 5;
 			}
 
+			verts[2].Position.X = input.MouseState.X - 640;
+			verts[2].Position.Y = -input.MouseState.Y + 360;
+			verts[5].Position.X = input.MouseState.X - 640;
+			verts[5].Position.Y = -input.MouseState.Y + 360;
+
 			base.UpdateInput(input);
 		}
 
@@ -151,6 +185,16 @@ namespace Project_IC.Screens {
 			gui.Draw(gameTime, ScreenManager);
 
 			ScreenManager.SpriteBatch.End();
+
+
+			vb.SetData<VertexPositionColor>(verts);
+			ScreenManager.GraphicsDevice.RasterizerState = RasterizerState.CullNone;
+			ScreenManager.GraphicsDevice.SetVertexBuffer(vb);
+			
+			foreach (var pass in be.CurrentTechnique.Passes) {
+				pass.Apply();
+				ScreenManager.GraphicsDevice.DrawPrimitives(PrimitiveType.TriangleList, 0, verts.Length / 3);
+			}
 
 			base.Draw(gameTime);
 		}
