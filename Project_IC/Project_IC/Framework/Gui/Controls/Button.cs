@@ -12,6 +12,8 @@ namespace Project_IC.Framework.Gui.Controls {
 			this.Bounds.Y = y;
 			this.Bounds.Width = width;
 			this.Text = text;
+
+			RecievesMouse = true;
 		}
 
 		public override void Initialize() {
@@ -27,12 +29,12 @@ namespace Project_IC.Framework.Gui.Controls {
 
 		public override void Draw(GameTime gameTime, ScreenManager screenManager) {
 			if (ContainsMouse) {
-				DrawPanel(screenManager.SpriteBatch, Visuals.ControlSrcRecs["cornerFocus"], Visuals.ControlSrcRecs["sideFocus"], Visuals.ControlSrcRecs["fillFocus"]);
+				DrawSurround(screenManager.SpriteBatch, Visuals.ControlSrcRecs["buttonCornerFocus"], Visuals.ControlSrcRecs["buttonSideFocus"], Visuals.ControlSrcRecs["buttonFillFocus"]);
 			}
 			else {
-				DrawPanel(screenManager.SpriteBatch, Visuals.ControlSrcRecs["corner"], Visuals.ControlSrcRecs["side"], Visuals.ControlSrcRecs["fill"]);
+				DrawSurround(screenManager.SpriteBatch, Visuals.ControlSrcRecs["buttonCorner"], Visuals.ControlSrcRecs["buttonSide"], Visuals.ControlSrcRecs["buttonFill"]);
 			}
-
+			
 			var centerDisplacement = new Vector2(Bounds.Width / 2, Bounds.Height / 2) - Visuals.Font.MeasureString(Text) / 2;
 			screenManager.SpriteBatch.DrawString(Visuals.Font, Text, GlobalPosition + centerDisplacement, Visuals.TextTint);
 			

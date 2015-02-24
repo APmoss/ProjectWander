@@ -12,16 +12,25 @@ namespace Project_IC.Framework.Gui {
 			this.GuiSheet = screenManager.Game.Content.Load<Texture2D>("textures/darkThemeGuiSheet");
 
 			ControlSrcRecs.Clear();
-			ControlSrcRecs.Add("corner", new Rectangle(0, 0, 16, 16));
-			ControlSrcRecs.Add("side", new Rectangle(0, 16, 16, 16));
-			ControlSrcRecs.Add("fill", new Rectangle(16, 16, 16, 16));
+			ControlSrcRecs.Add("buttonCorner", new Rectangle(0, 0, 16, 16));
+			ControlSrcRecs.Add("buttonSide", new Rectangle(0, 16, 16, 16));
+			ControlSrcRecs.Add("buttonFill", new Rectangle(16, 16, 16, 16));
 
-			ControlSrcRecs.Add("cornerFocus", new Rectangle(0, 48, 16, 16));
-			ControlSrcRecs.Add("sideFocus", new Rectangle(0, 64, 16, 16));
-			ControlSrcRecs.Add("fillFocus", new Rectangle(16, 64, 16, 16));
+			ControlSrcRecs.Add("buttonCornerFocus", new Rectangle(0, 48, 16, 16));
+			ControlSrcRecs.Add("buttonSideFocus", new Rectangle(0, 64, 16, 16));
+			ControlSrcRecs.Add("buttonFillFocus", new Rectangle(16, 64, 16, 16));
 
-			ControlSrcRecs.Add("underlineCorner", new Rectangle(16, 0, 16, 16));
-			ControlSrcRecs.Add("underline", new Rectangle(32, 0, 16, 16));
+			ControlSrcRecs.Add("panelCorner", new Rectangle(48, 0, 16, 16));
+			ControlSrcRecs.Add("panelSide", new Rectangle(48, 16, 16, 16));
+			ControlSrcRecs.Add("panelFill", new Rectangle(64, 16, 16, 16));
+
+			ControlSrcRecs.Add("underlineCorner", new Rectangle(64, 0, 16, 16));
+			ControlSrcRecs.Add("underline", new Rectangle(80, 0, 16, 16));
+
+			ControlSrcRecs.Add("windowClose", new Rectangle(48, 48, 16, 16));
+			ControlSrcRecs.Add("windowMinimize", new Rectangle(64, 48, 16, 16));
+			ControlSrcRecs.Add("windowCloseFocus", new Rectangle(48, 64, 16, 16));
+			ControlSrcRecs.Add("windowMinimizeFocus", new Rectangle(64, 64, 16, 16));
 		}
 	}
 }

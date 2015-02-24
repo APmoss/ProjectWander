@@ -13,7 +13,7 @@ namespace Project_IC.Framework.Gui.Controls {
 		}
 
 		public override void Draw(GameTime gameTime, ScreenManager screenManager) {
-			DrawPanel(screenManager.SpriteBatch, Visuals.ControlSrcRecs["corner"], Visuals.ControlSrcRecs["side"], Visuals.ControlSrcRecs["fill"]);
+			DrawSurround(screenManager.SpriteBatch, Visuals.ControlSrcRecs["panelCorner"], Visuals.ControlSrcRecs["panelSide"], Visuals.ControlSrcRecs["panelFill"]);
 			
 			base.Draw(gameTime, screenManager);
 		}

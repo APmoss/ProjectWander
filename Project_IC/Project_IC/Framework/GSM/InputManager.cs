@@ -7,7 +7,7 @@ namespace Project_IC.Framework.GSM {
 	}
 
 	class InputManager {
-		#region Field
+		#region Fields
 		public const int MAX_INPUTS = 4;
 
 		public KeyboardState KeyboardState;
@@ -17,6 +17,12 @@ namespace Project_IC.Framework.GSM {
 		public KeyboardState LastKeyboardState;
 		public GamePadState[] LastGamePadStates;
 		public MouseState LastMouseState;
+		#endregion
+
+		#region Properties
+		public Vector2 MouseDelta {
+			get; protected set;
+		}
 		#endregion
 
 		public InputManager() {
@@ -41,6 +47,8 @@ namespace Project_IC.Framework.GSM {
 				
 				GamePadStates[i] = GamePad.GetState((PlayerIndex)i);
 			}
+
+			MouseDelta = new Vector2(MouseState.X, MouseState.Y) - new Vector2(LastMouseState.X, LastMouseState.Y);
 		}
 
 		public bool IsKeyDown(Keys key) {

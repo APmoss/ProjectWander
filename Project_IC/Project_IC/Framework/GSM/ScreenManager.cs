@@ -11,6 +11,7 @@ namespace Project_IC.Framework.GSM {
 		List<Screen> screensToUpdate = new List<Screen>();
 
 		InputManager input = new InputManager();
+		GraphicsDeviceManager GraphicsDeviceManager;
 
 		public SpriteBatch SpriteBatch;
 		public FontLibrary FontLibrary = new FontLibrary();
@@ -19,8 +20,29 @@ namespace Project_IC.Framework.GSM {
 		bool initialized = false;
 		#endregion
 
-		public ScreenManager(Game game)
-			: base(game) { }
+		#region Properties
+		public Point Res {
+			get { return new Point(GraphicsDeviceManager.PreferredBackBufferWidth, GraphicsDeviceManager.PreferredBackBufferHeight); }
+			set {
+				GraphicsDeviceManager.PreferredBackBufferWidth = value.X;
+				GraphicsDeviceManager.PreferredBackBufferHeight = value.Y;
+				GraphicsDeviceManager.ApplyChanges();
+			}
+		}
+		public bool FullScreen {
+			get { return GraphicsDeviceManager.IsFullScreen; }
+			set {
+				GraphicsDeviceManager.IsFullScreen = value;
+				GraphicsDeviceManager.ApplyChanges();
+			}
+		}
+		#endregion
+
+		public ScreenManager(Game game, GraphicsDeviceManager graphics)
+			: base(game) {
+
+			this.GraphicsDeviceManager = graphics;
+		}
 
 		public override void Initialize() {
 			base.Initialize();

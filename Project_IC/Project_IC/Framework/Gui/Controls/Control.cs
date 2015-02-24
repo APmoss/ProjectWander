@@ -10,10 +10,13 @@ namespace Project_IC.Framework.Gui.Controls {
 		protected internal GuiManager GuiManager;
 		protected internal Control Parent;
 		protected List<Control> Children = new List<Control>();
+		protected List<Control> TempChildren = new List<Control>();
 		protected internal Visuals Visuals = new Visuals();
 
 		public Rectangle Bounds = Rectangle.Empty;
+		public bool Hidden = false;
 		public Color PrimaryTint = Color.White;
+		public bool RecievesMouse = false;
 
 		bool initialized = false;
 		public bool Enabled = true;
@@ -58,22 +61,36 @@ namespace Project_IC.Framework.Gui.Controls {
 		}
 
 		public virtual void Update(GameTime gameTime) {
+			TempChildren.Clear();
 			foreach (var child in Children) {
-				child.Update(gameTime);
+				TempChildren.Add(child);
+			}
+
+			while (TempChildren.Count > 0) {
+				Control child = TempChildren[TempChildren.Count - 1];
+				TempChildren.RemoveAt(TempChildren.Count - 1);
+
+				if (!child.Hidden) {
+					child.Update(gameTime);
+				}
 			}
 		}
 
 		public virtual void UpdateInput(InputManager input) {
-			if (Enabled && GlobalIntersection != Rectangle.Empty && !GuiManager.MouseRecieved) {
+			if (Enabled && GlobalIntersection != Rectangle.Empty) {// && !GuiManager.MouseRecieved) {
 				var currentMousePoint = new Point(input.MouseState.X, input.MouseState.Y);
 				var lastMousePoint = new Point(input.LastMouseState.X, input.LastMouseState.Y);
 
-				if (GlobalIntersection.Contains(currentMousePoint)) {
+				if (GlobalIntersection.Contains(currentMousePoint) && !GuiManager.MouseRecieved) {
 					ContainsMouse = true;
 					if (!GlobalIntersection.Contains(lastMousePoint)) {
 						if (MouseEntered != null) {
 							MouseEntered.Invoke(this, EventArgs.Empty);
 						}
+					}
+
+					if (RecievesMouse) {
+						GuiManager.MouseRecieved = true;
 					}
 				}
 				else {
@@ -104,18 +121,30 @@ namespace Project_IC.Framework.Gui.Controls {
 				}
 			}
 
+			TempChildren.Clear();
 			foreach (var child in Children) {
-				child.UpdateInput(input);
+				TempChildren.Add(child);
+			}
+
+			while (TempChildren.Count > 0) {
+				Control child = TempChildren[TempChildren.Count - 1];
+				TempChildren.RemoveAt(TempChildren.Count - 1);
+
+				if (!child.Hidden) {
+					child.UpdateInput(input);
+				}
 			}
 		}
 
 		public virtual void Draw(GameTime gameTime, ScreenManager screenManager) {
 			foreach (var child in Children) {
-				child.Draw(gameTime, screenManager);
+				if (!child.Hidden) {
+					child.Draw(gameTime, screenManager);
+				}
 			}
 		}
-		protected void DrawPanel(SpriteBatch spriteBatch, Rectangle corner, Rectangle side, Rectangle fill) {
-			// Calculate where each item of the panel should be drawn
+		protected void DrawSurround(SpriteBatch spriteBatch, Rectangle corner, Rectangle side, Rectangle fill) {
+			// Calculate where each item of the surrounding panel should be drawn
 			// Corners
 			var topLeft = new Vector2(GlobalPosition.X, GlobalPosition.Y);
 			spriteBatch.Draw(Visuals.GuiSheet, topLeft, corner, PrimaryTint);
@@ -158,6 +187,13 @@ namespace Project_IC.Framework.Gui.Controls {
 				}
 
 				Children.Add(control);
+			}
+		}
+
+		public void RemoveControls(params Control[] controls) {
+			foreach (var control in controls) {
+				Children.Remove(control);
+				TempChildren.Remove(control);
 			}
 		}
 	}

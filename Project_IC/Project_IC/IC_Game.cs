@@ -14,7 +14,7 @@ namespace Project_IC {
 
 			InitSettings();
 
-			screenManager = new ScreenManager(this);
+			screenManager = new ScreenManager(this, graphics);
 			Components.Add(screenManager);
 		}
 
@@ -52,7 +52,7 @@ namespace Project_IC {
 		}
 
 		void InitScreens() {
-			screenManager.AddScreen(new Screens.TestScreen());
+			screenManager.AddScreen(new Screens.Menus.MainMenu());
 			screenManager.AddScreen(new Screens.RandomBackground());
 			screenManager.AddScreen(new Screens.DebugOverlay(), true);
 		}

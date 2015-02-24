@@ -5,10 +5,15 @@ using Microsoft.Xna.Framework;
 using Project_IC.Framework.Gui;
 using Project_IC.Framework.Gui.Controls;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Project_IC.Screens {
 	class TestScreen : Screen {
 		GuiManager gui;
+
+		Label labbell = new Label(0, 100, "asdasdasdasdasdasdadsasdasd");
+		Window pannell = new Window(0, 300, 500, 300, "Title test thing blah", true);
+		Button buttonn = new Button(100, 40, 300, "asd");
 
 		public TestScreen() {
 			
@@ -18,10 +23,7 @@ namespace Project_IC.Screens {
 			gui = new GuiManager(new DarkThemeVisuals(ScreenManager));
 			//TODO: FIX THIS WITH SCREEN RESOLUTION
 			gui.BaseScreen.Bounds = ScreenManager.Game.GraphicsDevice.Viewport.Bounds;
-			Label labbell = new Label(0, 100, "asdasdasdasdasdasdadsasdasd");
 			labbell.Bounds.Height = labbell.Bounds.Width = 100;
-			Window pannell = new Window(0, 300, 500, 300, "Title test thing blah", false);
-			Button buttonn = new Button(100, 40, 300, "asd");
 			pannell.AddControls(buttonn);
 
 			gui.BaseScreen.AddControls(new Label(0, 0, "Tessssssssssst"), labbell, pannell,
@@ -48,6 +50,15 @@ namespace Project_IC.Screens {
 
 		public override void UpdateInput(InputManager input) {
 			gui.UpdateInput(input);
+
+			if (input.IsKeyPressed(Keys.F)) {
+				//labbell.Hidden = !labbell.Hidden;
+				ScreenManager.Res = ScreenManager.Res == new Point(1920, 1080) ? new Point(1280, 720) : new Point(1920, 1080);
+				ScreenManager.FullScreen = !ScreenManager.FullScreen;
+			}
+			if (input.IsKeyPressed(Keys.Escape)) {
+				ExitScreen();
+			}
 			
 			base.UpdateInput(input);
 		}
