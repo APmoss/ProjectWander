@@ -18,7 +18,6 @@ namespace Project_IC {
 			Components.Add(screenManager);
 		}
 
-		#region Methods
 		protected override void Initialize() {
 			InitScreens();
 
@@ -56,6 +55,5 @@ namespace Project_IC {
 			screenManager.AddScreen(new Screens.TestScreen());
 			screenManager.AddScreen(new Screens.DebugOverlay(), true);
 		}
-		#endregion
 	}
 }

@@ -12,7 +12,6 @@ namespace Project_IC.Framework.GSM {
 		Dictionary<string, SpriteFont> fonts = new Dictionary<string, SpriteFont>();
 		#endregion
 
-		#region Methods
 		public void LoadFonts(ContentManager content) {
 			if (content != null) {
 				var fontsBackup = new Dictionary<string, SpriteFont>(fonts);
@@ -46,6 +45,5 @@ namespace Project_IC.Framework.GSM {
 			// Return a default font if not found
 			return fonts["segoeui"];
 		}
-		#endregion
 	}
 }

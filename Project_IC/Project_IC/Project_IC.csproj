@@ -75,6 +75,8 @@
     <Compile Include="Framework\GSM\InputManager.cs" />
     <Compile Include="Framework\GSM\Screen.cs" />
     <Compile Include="Framework\GSM\ScreenManager.cs" />
+    <Compile Include="Framework\Gui\Controls\Control.cs" />
+    <Compile Include="Framework\Gui\DarkThemeVisuals.cs" />
     <Compile Include="Framework\Gui\GuiManager.cs" />
     <Compile Include="Framework\Gui\Visuals.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -122,9 +124,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Framework\Gui\Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--

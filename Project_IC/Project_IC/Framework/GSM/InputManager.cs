@@ -29,7 +29,6 @@ namespace Project_IC.Framework.GSM {
 			LastMouseState = new MouseState();
 		}
 
-		#region Methods
 		public void Update() {
 			LastKeyboardState = KeyboardState;
 			LastMouseState = MouseState;
@@ -89,6 +88,5 @@ namespace Project_IC.Framework.GSM {
 					return false;
 			}
 		}
-		#endregion
 	}
 }

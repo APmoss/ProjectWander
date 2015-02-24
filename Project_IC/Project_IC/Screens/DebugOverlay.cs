@@ -25,7 +25,6 @@ namespace Project_IC.Screens {
 			InputFallThrough = true;
 		}
 
-		#region Methods
 		public override void LoadContent() {
 			font = ScreenManager.FontLibrary.GetFont("consolas");
 			
@@ -74,6 +73,5 @@ namespace Project_IC.Screens {
 
 			base.Draw(gameTime);
 		}
-		#endregion
 	}
 }

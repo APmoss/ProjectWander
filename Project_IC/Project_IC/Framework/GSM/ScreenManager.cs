@@ -14,6 +14,7 @@ namespace Project_IC.Framework.GSM {
 
 		public SpriteBatch SpriteBatch;
 		public FontLibrary FontLibrary = new FontLibrary();
+		public Texture2D Blank;
 
 		bool initialized = false;
 		#endregion
@@ -21,7 +22,6 @@ namespace Project_IC.Framework.GSM {
 		public ScreenManager(Game game)
 			: base(game) { }
 
-		#region Methods
 		public override void Initialize() {
 			base.Initialize();
 
@@ -32,6 +32,8 @@ namespace Project_IC.Framework.GSM {
 			//TODO: Load stuff for fonts, spritebatch, etc.
 			SpriteBatch = new SpriteBatch(GraphicsDevice);
 			FontLibrary.LoadFonts(Game.Content);
+			Blank = new Texture2D(GraphicsDevice, 1, 1);
+			Blank.SetData<Color>(new Color[] { new Color(0, 0, 0) });
 
 			foreach (var screen in screens) {
 				screen.LoadContent();
@@ -63,6 +65,8 @@ namespace Project_IC.Framework.GSM {
 				var screen = screensToUpdate[screensToUpdate.Count - 1];
 				screensToUpdate.RemoveAt(screensToUpdate.Count - 1);
 
+				Screens.DebugOverlay.DebugText.AppendLine().AppendLine(screen.GetType().Name);
+
 				var sw = Stopwatch.StartNew();
 				screen.Update(gameTime, hasFocus, covered);
 				sw.Stop();
@@ -82,10 +86,10 @@ namespace Project_IC.Framework.GSM {
 					}
 				}
 
-				Screens.DebugOverlay.DebugText.Append(screen.GetType().Name).Append(" (").Append(sw.Elapsed.TotalMilliseconds).Append("ms) ");
+				Screens.DebugOverlay.DebugText.Append("(").Append(sw.Elapsed.TotalMilliseconds).Append("ms)").AppendLine();
 			}
 
-			Screens.DebugOverlay.DebugText.Append("}");
+			Screens.DebugOverlay.DebugText.AppendLine().Append("}");
 			
 			base.Update(gameTime);
 		}
@@ -128,6 +132,5 @@ namespace Project_IC.Framework.GSM {
 			screens.Remove(screen);
 			screensToUpdate.Remove(screen);
 		}
-		#endregion
 	}
 }
