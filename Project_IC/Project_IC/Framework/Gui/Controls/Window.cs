@@ -53,19 +53,19 @@ namespace Project_IC.Framework.Gui.Controls {
 			TitleBounds.Y = Bounds.Y;
 
 			CloseButton.Bounds = new Rectangle(0, 0, CloseButton.Bounds.Width, CloseButton.Bounds.Height);
-			CloseButton.Bounds.X = Bounds.Right - TitleBounds.Height / 2 - CloseButton.Bounds.Width / 2;
-			CloseButton.Bounds.Y = Bounds.Top + TitleBounds.Height / 2 - CloseButton.Bounds.Height / 2;
+			CloseButton.Bounds.X = (int)GlobalPosition.X + Bounds.Width - TitleBounds.Height / 2 - CloseButton.Bounds.Width / 2;
+			CloseButton.Bounds.Y = (int)GlobalPosition.Y + TitleBounds.Height / 2 - CloseButton.Bounds.Height / 2;
 			MinimizeButton.Bounds = new Rectangle(0, 0, MinimizeButton.Bounds.Width, MinimizeButton.Bounds.Height);
 			MinimizeButton.Bounds.X = CloseButton.Bounds.Left - MinimizeButton.Bounds.Width - Visuals.Padding;
 			MinimizeButton.Bounds.Y = CloseButton.Bounds.Y;
 
 			if (Minimized) {
-				Bounds.Width = (int)MathHelper.Lerp(Bounds.Width, TitleBounds.Width, .2f);
-				Bounds.Height = (int)MathHelper.Lerp(Bounds.Height, TitleBounds.Height, .2f);
+				Bounds.Width = (int)MathHelper.Lerp(Bounds.Width, TitleBounds.Width, .1f);
+				Bounds.Height = (int)MathHelper.Lerp(Bounds.Height, TitleBounds.Height, .1f);
 			}
 			else {
-				Bounds.Width = (int)MathHelper.Lerp(Bounds.Width, DestBounds.Width, .2f);
-				Bounds.Height = (int)MathHelper.Lerp(Bounds.Height, DestBounds.Height, .2f);
+				Bounds.Width = (int)MathHelper.Lerp(Bounds.Width, DestBounds.Width, .1f);
+				Bounds.Height = (int)MathHelper.Lerp(Bounds.Height, DestBounds.Height, .1f);
 			}
 
 			if (!Minimized) {

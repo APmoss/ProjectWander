@@ -88,12 +88,14 @@
     <Compile Include="Framework\Gui\Controls\Window.cs" />
     <Compile Include="Framework\Gui\DarkThemeVisuals.cs" />
     <Compile Include="Framework\Gui\GuiManager.cs" />
+    <Compile Include="Framework\Gui\TealThemeVisuals.cs" />
     <Compile Include="Framework\Gui\Visuals.cs" />
     <Compile Include="Framework\Lighting\EndPoint.cs" />
     <Compile Include="Framework\Lighting\LightManager.cs" />
     <Compile Include="Framework\Lighting\RadialLight.cs" />
     <Compile Include="Framework\Lighting\Segment.cs" />
     <Compile Include="Framework\ParticleSystem\ParticleEmitters\ParticleEmitter.cs" />
+    <Compile Include="Framework\ParticleSystem\ParticleEmitters\RainEmitter.cs" />
     <Compile Include="Framework\ParticleSystem\ParticleEmitters\SnowEmitter.cs" />
     <Compile Include="Framework\ParticleSystem\ParticleManager.cs" />
     <Compile Include="Framework\ParticleSystem\Particle.cs" />
@@ -104,8 +106,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="IC_Game.cs" />
     <Compile Include="Screens\DebugOverlay.cs" />
+    <Compile Include="Screens\GuiTestScreen.cs" />
     <Compile Include="Screens\Menus\MainMenu.cs" />
     <Compile Include="Screens\Menus\MenuScreen.cs" />
+    <Compile Include="Screens\ParticleTestScreen.cs" />
+    <Compile Include="Screens\PrimitiveTestScreen.cs" />
     <Compile Include="Screens\RandomBackground.cs" />
     <Compile Include="Screens\TestScreen.cs" />
     <Compile Include="Stcs.cs" />

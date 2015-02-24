@@ -15,7 +15,7 @@ namespace Project_IC.Framework.Gui {
 		public int Padding = 5;
 		#endregion
 
-		public Visuals() { }
+		protected Visuals() { }
 		public Visuals(SpriteFont font, Texture2D guiSheet) {
 			this.Font = font;
 			this.GuiSheet = guiSheet;

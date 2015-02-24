@@ -11,7 +11,7 @@ namespace Project_IC.Framework.ParticleSystem {
 		public Texture2D ParticleSheet;
 		int maxParticleCount = 256;
 
-		public Random R = new Random();
+		protected internal Random R = new Random();
 
 		List<Particle> particles = new List<Particle>();
 		List<ParticleEmitter> particleEmitters = new List<ParticleEmitter>();
@@ -85,6 +85,13 @@ namespace Project_IC.Framework.ParticleSystem {
 		}
 		public void Remove(ParticleEmitter emitter) {
 			particleEmitters.Remove(emitter);
-		}	
+		}
+
+		public void ClearParticles() {
+			particles.Clear();
+		}
+		public void ClearParticleEmitters() {
+			particleEmitters.Clear();
+		}
 	}
 }

@@ -7,11 +7,13 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Project_IC.Framework.Gui.Controls {
 	class Label : Control {
 		public string Text = string.Empty;
+		public float Scale = 1;
 
-		public Label(int x, int y, string text) {
+		public Label(int x, int y, string text, float scale) {
 			this.Text = text;
 			this.Bounds.X = x;
 			this.Bounds.Y = y;
+			this.Scale = scale;
 		}
 
 		public override void Initialize() {
@@ -27,7 +29,8 @@ namespace Project_IC.Framework.Gui.Controls {
 
 		public override void Draw(GameTime gameTime, ScreenManager screenManager) {
 			var centerDisplacement = new Vector2(Bounds.Width / 2, Bounds.Height / 2) - Visuals.Font.MeasureString(Text) / 2;
-			screenManager.SpriteBatch.DrawString(Visuals.Font, Text, GlobalPosition + centerDisplacement, Visuals.TextTint);
+
+			screenManager.SpriteBatch.DrawString(Visuals.Font, Text, GlobalPosition + centerDisplacement, PrimaryTint, 0, Vector2.Zero, Scale, 0, 0);
 
 			base.Draw(gameTime, screenManager);
 		}
