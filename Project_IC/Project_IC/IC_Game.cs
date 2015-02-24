@@ -1,28 +1,26 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
+using Project_IC.Framework.GSM;
 
 namespace Project_IC {
 	public class IC_Game : Game {
 		GraphicsDeviceManager graphics;
+		ScreenManager screenManager;
 
 		public IC_Game() {
 			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
 
+			InitSettings();
 
+			screenManager = new ScreenManager(this);
+			Components.Add(screenManager);
 		}
 
 		#region Methods
 		protected override void Initialize() {
-
+			InitScreens();
 
 			base.Initialize();
 		}
@@ -32,7 +30,7 @@ namespace Project_IC {
 		}
 
 		protected override void Update(GameTime gameTime) {
-			
+			Screens.DebugOverlay.DebugText.AppendLine("-I still like jellybeans!");
 
 			base.Update(gameTime);
 		}
@@ -40,9 +38,22 @@ namespace Project_IC {
 		protected override void Draw(GameTime gameTime) {
 			GraphicsDevice.Clear(Color.CornflowerBlue);
 
-			
+
 
 			base.Draw(gameTime);
+		}
+
+		void InitSettings() {
+			IsMouseVisible = true;
+
+			TargetElapsedTime = TimeSpan.FromSeconds(1d / 60d);
+
+			graphics.PreferredBackBufferWidth = 1280;
+			graphics.PreferredBackBufferHeight = 720;
+		}
+
+		void InitScreens() {
+			screenManager.AddScreen(new Screens.DebugOverlay());
 		}
 		#endregion
 	}
