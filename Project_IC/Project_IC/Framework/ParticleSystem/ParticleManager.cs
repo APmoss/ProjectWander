@@ -58,7 +58,7 @@ namespace Project_IC.Framework.ParticleSystem {
 
 		public void Draw(GameTime gameTime, ScreenManager screenManager) {
 			foreach (var particle in particles) {
-				screenManager.SpriteBatch.Draw(ParticleSheet, particle.Position, particle.SourceRec, particle.Tint, particle.Rotation, new Vector2(particle.SourceRec.Width / 2, particle.SourceRec.Height / 2), particle.Scale, 0, 0);
+				screenManager.SpriteBatch.Draw(ParticleSheet, particle.Position, particle.SourceRec, particle.Tint * particle.Alpha, particle.Rotation, new Vector2(particle.SourceRec.Width / 2, particle.SourceRec.Height / 2), particle.Scale, 0, 0);
 			}
 		}
 

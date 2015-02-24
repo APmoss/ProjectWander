@@ -23,6 +23,10 @@ namespace Project_IC.Framework.GSM {
 		public Vector2 MouseDelta {
 			get; protected set;
 		}
+
+		public int MouseScrollDelta {
+			get; protected set;
+		}
 		#endregion
 
 		public InputManager() {
@@ -33,6 +37,9 @@ namespace Project_IC.Framework.GSM {
 			LastKeyboardState = new KeyboardState();
 			LastGamePadStates = new GamePadState[MAX_INPUTS];
 			LastMouseState = new MouseState();
+
+			MouseDelta = Vector2.Zero;
+			MouseScrollDelta = 0;
 		}
 
 		public void Update() {
@@ -49,6 +56,7 @@ namespace Project_IC.Framework.GSM {
 			}
 
 			MouseDelta = new Vector2(MouseState.X, MouseState.Y) - new Vector2(LastMouseState.X, LastMouseState.Y);
+			MouseScrollDelta = MouseState.ScrollWheelValue - LastMouseState.ScrollWheelValue;
 		}
 
 		public bool IsKeyDown(Keys key) {

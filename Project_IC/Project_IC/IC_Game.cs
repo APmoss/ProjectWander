@@ -37,15 +37,14 @@ namespace Project_IC {
 		protected override void Draw(GameTime gameTime) {
 			GraphicsDevice.Clear(Color.CornflowerBlue);
 
-			
-
 			base.Draw(gameTime);
 		}
 
 		void InitSettings() {
 			IsMouseVisible = true;
 
-			TargetElapsedTime = TimeSpan.FromSeconds(1d / 60d);
+			IsFixedTimeStep = false;
+			graphics.SynchronizeWithVerticalRetrace = false;
 
 			graphics.PreferredBackBufferWidth = 1280;
 			graphics.PreferredBackBufferHeight = 720;

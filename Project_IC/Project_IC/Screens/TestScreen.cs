@@ -23,6 +23,7 @@ namespace Project_IC.Screens {
 
 		Texture2D texturree;
 		Texture2D sampleBackground;
+		Effect e;
 		Random r = new Random();
 
 		public TestScreen() {
@@ -57,6 +58,7 @@ namespace Project_IC.Screens {
 
 			texturree = ScreenManager.Game.Content.Load<Texture2D>("textures/darkThemeGuiSheet");
 			sampleBackground = ScreenManager.Game.Content.Load<Texture2D>("city");
+			e = ScreenManager.Game.Content.Load<Effect>("effect");
 
 			TmxMap tmxMap = TmxMap.Load("Content/testMap.tmx");
 
@@ -72,6 +74,8 @@ namespace Project_IC.Screens {
 
 			pannell.Title = "Title test thing blah - " + part.ParticleCount;
 
+			DebugOverlay.DebugText.Append(" :: TC - ").Append(Stcs.TC).AppendLine();
+
 			gui.Update(gameTime);
 
 			base.Update(gameTime, hasFocus, covered);
@@ -83,6 +87,12 @@ namespace Project_IC.Screens {
 			if (input.IsKeyPressed(Keys.H)) {
 				gui.BaseScreen.Hidden = !gui.BaseScreen.Hidden;
 			}
+			if (input.IsKeyPressed(Keys.V)) {
+				ScreenManager.VSync = !ScreenManager.VSync;
+			}
+			if (input.IsKeyPressed(Keys.Z)) {
+				Stcs.TC = 0;
+			}
 			if (input.IsKeyPressed(Keys.F)) {
 				//labbell.Hidden = !labbell.Hidden;
 				ScreenManager.Res = ScreenManager.Res == new Point(1920, 1080) ? new Point(1280, 720) : new Point(1920, 1080);
@@ -91,6 +101,7 @@ namespace Project_IC.Screens {
 			if (input.IsKeyPressed(Keys.Escape)) {
 				ExitScreen();
 			}
+			Stcs.TC += (.001f * input.MouseScrollDelta);
 			if (input.IsKeyDown(Keys.P)) {
 				for (int i = 0; i < 10; i++) {
 					Vector2 v = new Vector2((float)r.NextDouble(), (float)r.NextDouble());
@@ -126,8 +137,8 @@ namespace Project_IC.Screens {
 		}
 
 		public override void Draw(GameTime gameTime) {
-			ScreenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null, cam.Transformation);
-
+			ScreenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, e, cam.Transformation);
+			
 			ScreenManager.SpriteBatch.Draw(sampleBackground, new Rectangle(-128, -128, 1024 + 512, 1024 + 512), Color.Gray);
 
 			part.Draw(gameTime, ScreenManager);

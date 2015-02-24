@@ -18,7 +18,7 @@ namespace Project_IC.Framework.ParticleSystem.ParticleEmitters {
 		#endregion
 
 		public virtual void Update(GameTime gameTime) {
-			elapsedLife += gameTime.ElapsedGameTime;
+			elapsedLife += Stcs.DilateTime(gameTime.ElapsedGameTime);
 
 			if (LifeSpan != TimeSpan.Zero && elapsedLife > LifeSpan) {
 				ParticleManager.Remove(this);

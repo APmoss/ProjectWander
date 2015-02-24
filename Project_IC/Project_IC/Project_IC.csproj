@@ -104,6 +104,7 @@
     <Compile Include="Screens\Menus\MenuScreen.cs" />
     <Compile Include="Screens\RandomBackground.cs" />
     <Compile Include="Screens\TestScreen.cs" />
+    <Compile Include="Stcs.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

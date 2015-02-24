@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32" backgroundcolor="#5a0000">
  <tileset firstgid="1" name="environment" tilewidth="32" tileheight="32">
-  <image source="D:/Google Drive/SET Nationals/Code Backups/Project_WB Final Pre Release/Project_WB/Project_WB/Project_WBContent/maps/tilesets/environment.png" width="512" height="512"/>
+  <image source="environment.png" width="512" height="512"/>
   <terraintypes>
    <terrain name="grass" tile="17"/>
    <terrain name="sand" tile="97"/>
@@ -51,7 +51,7 @@
   <tile id="161" terrain="2,2,,"/>
   <tile id="162" terrain="2,,,"/>
  </tileset>
- <layer name="terrain1" width="64" height="64">
+ <layer name="terrain1" width="64" height="64" visible="0">
   <data>
    <tile gid="49"/>
    <tile gid="49"/>
@@ -4151,7 +4151,7 @@
    <tile gid="49"/>
   </data>
  </layer>
- <layer name="terrain2" width="64" height="64">
+ <layer name="terrain2" width="64" height="64" visible="0">
   <data>
    <tile gid="4"/>
    <tile gid="35"/>
@@ -8251,7 +8251,7 @@
    <tile gid="34"/>
   </data>
  </layer>
- <layer name="objects1" width="64" height="64">
+ <layer name="objects1" width="64" height="64" visible="0">
   <data>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -12365,17 +12365,17 @@
    <tile gid="10"/>
    <tile gid="11"/>
    <tile gid="12"/>
+   <tile gid="54"/>
+   <tile gid="2684354614"/>
+   <tile gid="3221225526"/>
+   <tile gid="1610612790"/>
+   <tile gid="54"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="2147483702"/>
+   <tile gid="3758096438"/>
+   <tile gid="1073741878"/>
+   <tile gid="536870966"/>
+   <tile gid="2147483702"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>

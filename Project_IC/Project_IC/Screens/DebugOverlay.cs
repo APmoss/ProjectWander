@@ -20,9 +20,16 @@ namespace Project_IC.Screens {
 		public static bool Visible = false;
 		#endregion
 
+		#region Properties
+		public static float FrameRate {
+			get; protected set;
+		}
+		#endregion
+
 		public DebugOverlay() {
 			IsPopup = true;
 			InputFallThrough = true;
+			FrameRate = 0f;
 		}
 
 		public override void LoadContent() {
@@ -37,6 +44,7 @@ namespace Project_IC.Screens {
 			if (elapsed.TotalSeconds > .5) {
 				elapsed -= TimeSpan.FromSeconds(.5);
 				frameRate = (float)Math.Round((frameCounter * 2 + frameRate) / 2, 2);
+				FrameRate = frameRate;
 				frameCounter = 0; 
 			}
 			

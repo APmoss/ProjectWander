@@ -23,26 +23,25 @@ namespace Project_IC.Framework.ParticleSystem.ParticleEmitters {
 			Random r = ParticleManager.R;
 			var particles = new List<Particle>();
 
-			fogElapsed += gameTime.ElapsedGameTime;
+			fogElapsed += Stcs.DilateTime(gameTime.ElapsedGameTime);
 			if (fogElapsed > fogTarget) {
-				fogElapsed -= fogTarget;
+				fogElapsed = TimeSpan.Zero;
 
 				particles.Add(new Particle(new Rectangle(16, 0, 32, 32), new SnowModifier()) {
 												Position = new Vector2(r.Next(Bounds.Width), -8),
-												Velocity = new Vector2((float)r.NextDouble() / 3 + .1f, r.Next(2, 5)),
+												Velocity = new Vector2(r.Next(4, 50), r.Next(120, 300)),
 												Scale = 20f,
 												LifeSpan = TimeSpan.FromSeconds(4),
 												Tint = Color.White * .2f
 											});
 			}
 
-			snowElapsed += gameTime.ElapsedGameTime;
+			snowElapsed += Stcs.DilateTime(gameTime.ElapsedGameTime);
 			if (snowElapsed > snowTarget) {
-				snowElapsed -= snowTarget;
-
+				snowElapsed = TimeSpan.Zero;
 				particles.Add(new Particle(new Rectangle(0, 0, 16, 16), new SnowModifier()) {
 												Position = new Vector2(r.Next(Bounds.Width), -8),
-												Velocity = new Vector2((float)r.NextDouble() / 3 + .3f, r.Next(3, 7)),
+												Velocity = new Vector2(r.Next(20, 100), r.Next(180, 420)),
 												Scale = (float)r.NextDouble() / 4 + .5f,
 												LifeSpan = TimeSpan.FromSeconds(4)
 											});

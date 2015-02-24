@@ -4,17 +4,15 @@ using Microsoft.Xna.Framework;
 
 namespace Project_IC.Framework.ParticleSystem.ParticleModifiers {
 	class BasicModifier : ParticleModifier {
-		const float ALPHA_DECAY = .7f;
-
 		public override void Apply(GameTime gameTime, Particle particle) {
-			particle.Position += particle.Velocity;
+			particle.Position += particle.Velocity * Stcs.PPS1(gameTime);
 
 			if (particle.LifeSpan != TimeSpan.Zero && particle.ElapsedLife > particle.LifeSpan) {
-				if (particle.Tint.A * ALPHA_DECAY <= 0) {
+				if (particle.ElapsedLife > particle.LifeSpan + particle.TransitionOff) {
 					particle.ParticleManager.Remove(particle);
 				}
 				else {
-					particle.Tint *= ALPHA_DECAY;
+					particle.Alpha = (float)(1 - (particle.ElapsedLife - particle.LifeSpan).TotalSeconds / particle.TransitionOff.TotalSeconds);
 				}
 			}
 

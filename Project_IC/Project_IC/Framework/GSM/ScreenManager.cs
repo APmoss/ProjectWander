@@ -35,6 +35,13 @@ namespace Project_IC.Framework.GSM {
 				GraphicsDeviceManager.ApplyChanges();
 			}
 		}
+		public bool VSync {
+			get { return GraphicsDeviceManager.SynchronizeWithVerticalRetrace; }
+			set {
+				GraphicsDeviceManager.SynchronizeWithVerticalRetrace = value;
+				GraphicsDeviceManager.ApplyChanges();
+			}
+		}
 		#endregion
 
 		public ScreenManager(Game game, GraphicsDeviceManager graphics)

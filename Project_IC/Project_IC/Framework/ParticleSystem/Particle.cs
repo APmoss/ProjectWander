@@ -11,6 +11,7 @@ namespace Project_IC.Framework.ParticleSystem {
 
 		protected TimeSpan elapsedLife = TimeSpan.Zero;
 		public TimeSpan LifeSpan = TimeSpan.FromSeconds(5);
+		public TimeSpan TransitionOff = TimeSpan.FromSeconds(1);
 
 		public Vector2 Position = Vector2.Zero;
 		public Vector2 Velocity = Vector2.Zero;
@@ -18,6 +19,7 @@ namespace Project_IC.Framework.ParticleSystem {
 		public Rectangle SourceRec = Rectangle.Empty;
 		public float Scale = 1f;
 		public Color Tint = Color.White;
+		public float Alpha = 1f;
 
 		public List<ParticleModifier> Modifiers = new List<ParticleModifier>();
 		#endregion
@@ -40,7 +42,7 @@ namespace Project_IC.Framework.ParticleSystem {
 		}
 
 		public virtual void Update(GameTime gameTime) {
-			elapsedLife += gameTime.ElapsedGameTime;
+			elapsedLife += Stcs.DilateTime(gameTime.ElapsedGameTime);
 
 			foreach (var modifier in Modifiers) {
 				modifier.Apply(gameTime, this);
