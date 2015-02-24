@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Project_IC.Framework.GSM;
+using Microsoft.Xna.Framework;
 
 namespace Project_IC.Framework.Gui {
 	class DarkThemeVisuals : Visuals {
-		public DarkThemeVisuals(SpriteFont font, Texture2D guiSheet, ContentManager content)
-			: base(font, guiSheet) {
+		public DarkThemeVisuals(ScreenManager screenManager) {
+			this.Font = screenManager.FontLibrary.GetFont("segoeUI");
+			this.GuiSheet = screenManager.Game.Content.Load<Texture2D>("textures/darkThemeGuiSheet");
 
-			//load guisheet content and stuff
-			// set all the rectangles and stuff
+			ControlSrcRecs.Clear();
+			ControlSrcRecs.Add("corner", new Rectangle(0, 0, 16, 16));
+			ControlSrcRecs.Add("side", new Rectangle(0, 16, 16, 16));
+			ControlSrcRecs.Add("fill", new Rectangle(16, 16, 16, 16));
 		}
 	}
 }

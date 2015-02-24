@@ -76,6 +76,7 @@
     <Compile Include="Framework\GSM\Screen.cs" />
     <Compile Include="Framework\GSM\ScreenManager.cs" />
     <Compile Include="Framework\Gui\Controls\Control.cs" />
+    <Compile Include="Framework\Gui\Controls\Label.cs" />
     <Compile Include="Framework\Gui\DarkThemeVisuals.cs" />
     <Compile Include="Framework\Gui\GuiManager.cs" />
     <Compile Include="Framework\Gui\Visuals.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="IC_Game.cs" />
     <Compile Include="Screens\DebugOverlay.cs" />
+    <Compile Include="Screens\RandomBackground.cs" />
     <Compile Include="Screens\TestScreen.cs" />
   </ItemGroup>
   <ItemGroup>

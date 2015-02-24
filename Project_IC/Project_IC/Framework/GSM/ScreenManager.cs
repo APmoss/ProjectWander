@@ -33,7 +33,7 @@ namespace Project_IC.Framework.GSM {
 			SpriteBatch = new SpriteBatch(GraphicsDevice);
 			FontLibrary.LoadFonts(Game.Content);
 			Blank = new Texture2D(GraphicsDevice, 1, 1);
-			Blank.SetData<Color>(new Color[] { new Color(0, 0, 0) });
+			Blank.SetData<Color>(new Color[] { Color.White });
 
 			foreach (var screen in screens) {
 				screen.LoadContent();

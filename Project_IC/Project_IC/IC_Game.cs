@@ -53,6 +53,7 @@ namespace Project_IC {
 
 		void InitScreens() {
 			screenManager.AddScreen(new Screens.TestScreen());
+			screenManager.AddScreen(new Screens.RandomBackground());
 			screenManager.AddScreen(new Screens.DebugOverlay(), true);
 		}
 	}

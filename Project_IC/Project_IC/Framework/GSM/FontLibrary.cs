@@ -40,7 +40,7 @@ namespace Project_IC.Framework.GSM {
 
 		public SpriteFont GetFont(string fontName) {
 			if (fonts.ContainsKey(fontName.ToLower())) {
-				return fonts[fontName];
+				return fonts[fontName.ToLower()];
 			}
 			// Return a default font if not found
 			return fonts["segoeui"];

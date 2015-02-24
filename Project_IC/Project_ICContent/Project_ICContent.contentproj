@@ -43,10 +43,9 @@
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Compile Include="textures\guiSheet.png">
-      <Name>guiSheet</Name>
+    <Compile Include="textures\darkThemeGuiSheet.png">
+      <Name>darkThemeGuiSheet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

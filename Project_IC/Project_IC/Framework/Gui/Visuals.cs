@@ -9,12 +9,14 @@ namespace Project_IC.Framework.Gui {
 		public SpriteFont Font;
 		public Texture2D GuiSheet;
 
+		public Dictionary<string, Rectangle> ControlSrcRecs = new Dictionary<string,Rectangle>();
+
 		public Color TextTint = Color.White;
 		public int Padding = 5;
 
-		public Rectangle corner = Rectangle.Empty;
 		#endregion
 
+		public Visuals() { }
 		public Visuals(SpriteFont font, Texture2D guiSheet) {
 			this.Font = font;
 			this.GuiSheet = guiSheet;
