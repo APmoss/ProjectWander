@@ -13,6 +13,7 @@ namespace Project_IC.Framework.Gui.Controls {
 		protected internal Visuals Visuals = new Visuals();
 
 		public Rectangle Bounds = Rectangle.Empty;
+		public Color PrimaryTint = Color.White;
 
 		bool initialized = false;
 		public bool Enabled = true;
@@ -31,7 +32,7 @@ namespace Project_IC.Framework.Gui.Controls {
 		public Rectangle GlobalIntersection {
 			get {
 				if (Parent != null) {
-					return Rectangle.Intersect(Bounds, Parent.GlobalIntersection);
+					return Rectangle.Intersect(new Rectangle((int)GlobalPosition.X, (int)GlobalPosition.Y, Bounds.Width, Bounds.Height), Parent.GlobalIntersection);
 				}
 				return Bounds;
 			}
@@ -64,8 +65,8 @@ namespace Project_IC.Framework.Gui.Controls {
 
 		public virtual void UpdateInput(InputManager input) {
 			if (Enabled && GlobalIntersection != Rectangle.Empty && !GuiManager.MouseRecieved) {
-				var lastMousePoint = new Point(input.MouseState.X, input.MouseState.Y);
-				var currentMousePoint = new Point(input.LastMouseState.X, input.LastMouseState.Y);
+				var currentMousePoint = new Point(input.MouseState.X, input.MouseState.Y);
+				var lastMousePoint = new Point(input.LastMouseState.X, input.LastMouseState.Y);
 
 				if (GlobalIntersection.Contains(currentMousePoint)) {
 					ContainsMouse = true;
@@ -74,8 +75,6 @@ namespace Project_IC.Framework.Gui.Controls {
 							MouseEntered.Invoke(this, EventArgs.Empty);
 						}
 					}
-
-					GuiManager.MouseRecieved = true;
 				}
 				else {
 					ContainsMouse = false;
@@ -115,40 +114,37 @@ namespace Project_IC.Framework.Gui.Controls {
 				child.Draw(gameTime, screenManager);
 			}
 		}
-		protected void DrawPanel(SpriteBatch spriteBatch) {
-			// Access source rectangles needed for drawing the panel
-			var corner = Visuals.ControlSrcRecs["corner"];
-			var side = Visuals.ControlSrcRecs["side"];
-			var fill = Visuals.ControlSrcRecs["fill"];
-
+		protected void DrawPanel(SpriteBatch spriteBatch, Rectangle corner, Rectangle side, Rectangle fill) {
 			// Calculate where each item of the panel should be drawn
 			// Corners
 			var topLeft = new Vector2(GlobalPosition.X, GlobalPosition.Y);
-			spriteBatch.Draw(Visuals.GuiSheet, topLeft, corner, Color.White);
+			spriteBatch.Draw(Visuals.GuiSheet, topLeft, corner, PrimaryTint);
 
 			var bottomLeft = new Vector2(GlobalPosition.X, GlobalPosition.Y + Bounds.Height - corner.Height);
-			spriteBatch.Draw(Visuals.GuiSheet, bottomLeft, corner, Color.Red, 0, Vector2.Zero, 1, SpriteEffects.FlipVertically, 0);
+			spriteBatch.Draw(Visuals.GuiSheet, bottomLeft, corner, PrimaryTint, 0, Vector2.Zero, 1, SpriteEffects.FlipVertically, 0);
 
-			var topRight = new Vector2(GlobalPosition.X + Bounds.Width - corner.Height, GlobalPosition.Y);
-			spriteBatch.Draw(Visuals.GuiSheet, topRight, corner, Color.Green, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
+			var topRight = new Vector2(GlobalPosition.X + Bounds.Width - corner.Width, GlobalPosition.Y);
+			spriteBatch.Draw(Visuals.GuiSheet, topRight, corner, PrimaryTint, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
 
-			var bottomRight = new Vector2(GlobalPosition.X + Bounds.Width - corner.Height, GlobalPosition.Y + Bounds.Height - corner.Height);
-			spriteBatch.Draw(Visuals.GuiSheet, bottomRight, corner, Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically, 0);
+			var bottomRight = new Vector2(GlobalPosition.X + Bounds.Width - corner.Width, GlobalPosition.Y + Bounds.Height - corner.Height);
+			spriteBatch.Draw(Visuals.GuiSheet, bottomRight, corner, PrimaryTint, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically, 0);
 
 			// Sides
 			var left = new Rectangle((int)topLeft.X, (int)topLeft.Y + corner.Height, side.Width, (int)bottomLeft.Y - (int)topLeft.Y - corner.Height);
-			spriteBatch.Draw(Visuals.GuiSheet, left, side, Color.White);
+			spriteBatch.Draw(Visuals.GuiSheet, left, side, PrimaryTint);
 			// Width and height are flipped because it stretches before rotation
 			var top = new Rectangle((int)topRight.X, (int)topRight.Y, side.Width, (int)topRight.X - (int)topLeft.X - corner.Width);
-			spriteBatch.Draw(Visuals.GuiSheet, top, side, Color.Green, MathHelper.PiOver2, Vector2.Zero, 0, 0);
+			spriteBatch.Draw(Visuals.GuiSheet, top, side, PrimaryTint, MathHelper.PiOver2, Vector2.Zero, 0, 0);
 			// W/H for right and bottom must be equal to W/H of left and right
 			var right = new Rectangle((int)bottomRight.X + corner.Width, (int)bottomRight.Y, left.Width, left.Height);
-			spriteBatch.Draw(Visuals.GuiSheet, right, side, Color.Blue, MathHelper.Pi, Vector2.Zero, 0, 0);
+			spriteBatch.Draw(Visuals.GuiSheet, right, side, PrimaryTint, MathHelper.Pi, Vector2.Zero, 0, 0);
 			var bottom = new Rectangle((int)bottomLeft.X + corner.Width, (int)bottomLeft.Y + corner.Height, top.Width, top.Height);
-			spriteBatch.Draw(Visuals.GuiSheet, bottom, side, Color.Red, -MathHelper.PiOver2, Vector2.Zero, 0, 0);
+			spriteBatch.Draw(Visuals.GuiSheet, bottom, side, PrimaryTint, -MathHelper.PiOver2, Vector2.Zero, 0, 0);
 
 			// Center fill
-			//asdasdasdadsadasd
+			// We can reuse a lot of the dimensions we already have since it's just a center rectangle
+			var center = new Rectangle(bottom.X, left.Y, top.Height, left.Height);
+			spriteBatch.Draw(Visuals.GuiSheet, center, fill, PrimaryTint);
 		}
 
 		public void AddControls(params Control[] controls) {

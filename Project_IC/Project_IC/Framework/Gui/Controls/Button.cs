@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Project_IC.Framework.GSM;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Project_IC.Framework.Gui.Controls {
-	class Label : Control {
+	class Button : Control {
 		public string Text = string.Empty;
 
-		public Label(int x, int y, string text) {
-			this.Text = text;
+		public Button(int x, int y, int width, string text) {
 			this.Bounds.X = x;
 			this.Bounds.Y = y;
+			this.Bounds.Width = width;
+			this.Text = text;
 		}
 
 		public override void Initialize() {
@@ -21,14 +21,21 @@ namespace Project_IC.Framework.Gui.Controls {
 			if (Bounds.Height == 0) {
 				Bounds.Height = (int)Visuals.Font.MeasureString(Text).Y + Visuals.Padding * 2;
 			}
-			
+
 			base.Initialize();
 		}
 
 		public override void Draw(GameTime gameTime, ScreenManager screenManager) {
+			if (ContainsMouse) {
+				DrawPanel(screenManager.SpriteBatch, Visuals.ControlSrcRecs["cornerFocus"], Visuals.ControlSrcRecs["sideFocus"], Visuals.ControlSrcRecs["fillFocus"]);
+			}
+			else {
+				DrawPanel(screenManager.SpriteBatch, Visuals.ControlSrcRecs["corner"], Visuals.ControlSrcRecs["side"], Visuals.ControlSrcRecs["fill"]);
+			}
+
 			var centerDisplacement = new Vector2(Bounds.Width / 2, Bounds.Height / 2) - Visuals.Font.MeasureString(Text) / 2;
 			screenManager.SpriteBatch.DrawString(Visuals.Font, Text, GlobalPosition + centerDisplacement, Visuals.TextTint);
-
+			
 			base.Draw(gameTime, screenManager);
 		}
 	}

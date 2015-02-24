@@ -15,6 +15,10 @@ namespace Project_IC.Framework.Gui {
 			ControlSrcRecs.Add("corner", new Rectangle(0, 0, 16, 16));
 			ControlSrcRecs.Add("side", new Rectangle(0, 16, 16, 16));
 			ControlSrcRecs.Add("fill", new Rectangle(16, 16, 16, 16));
+
+			ControlSrcRecs.Add("cornerFocus", new Rectangle(0, 48, 16, 16));
+			ControlSrcRecs.Add("sideFocus", new Rectangle(0, 64, 16, 16));
+			ControlSrcRecs.Add("fillFocus", new Rectangle(16, 64, 16, 16));
 		}
 	}
 }

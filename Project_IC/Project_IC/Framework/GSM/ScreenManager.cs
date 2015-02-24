@@ -29,7 +29,6 @@ namespace Project_IC.Framework.GSM {
 		}
 
 		protected override void LoadContent() {
-			//TODO: Load stuff for fonts, spritebatch, etc.
 			SpriteBatch = new SpriteBatch(GraphicsDevice);
 			FontLibrary.LoadFonts(Game.Content);
 			Blank = new Texture2D(GraphicsDevice, 1, 1);
@@ -100,7 +99,7 @@ namespace Project_IC.Framework.GSM {
 					screen.Draw(gameTime);
 				}
 			}
-			
+
 			base.Draw(gameTime);
 		}
 

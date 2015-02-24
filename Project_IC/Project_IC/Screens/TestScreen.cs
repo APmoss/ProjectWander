@@ -18,9 +18,22 @@ namespace Project_IC.Screens {
 			gui = new GuiManager(new DarkThemeVisuals(ScreenManager));
 			//TODO: FIX THIS WITH SCREEN RESOLUTION
 			gui.BaseScreen.Bounds = ScreenManager.Game.GraphicsDevice.Viewport.Bounds;
-			Label labbel = new Label(0, 100, "asdasdasdasdasdasdadsasdasd");
-			labbel.Bounds.Height = labbel.Bounds.Width = 500;
-			gui.BaseScreen.AddControls(new Label(0, 0, "Tessssssssssst"), labbel);
+			Label labbell = new Label(0, 100, "asdasdasdasdasdasdadsasdasd");
+			labbell.Bounds.Height = labbell.Bounds.Width = 100;
+			Panel pannell = new Panel(0, 300, 500, 300);
+			Button buttonn = new Button(100, 10, 300, "asd");
+			pannell.AddControls(buttonn);
+
+			gui.BaseScreen.AddControls(new Label(0, 0, "Tessssssssssst"), labbell, pannell,
+										new Button(550, 100, 500, "1111111111111111111111"),
+										new Button(550, 150, 500, "2222222222222222222222"),
+										new Button(550, 200, 500, "3333333333333333333333"),
+										new Button(550, 250, 500, "4444444444444444444444"),
+										new Button(550, 300, 500, "5555555555555555555555"),
+										new Button(550, 350, 500, "6666666666666666666666"),
+										new Button(550, 400, 500, "7777777777777777777777"),
+										new Button(550, 450, 500, "8888888888888888888888"),
+										new Button(550, 500, 500, "9999999999999999999999"));
 			
 			base.LoadContent();
 		}
@@ -40,7 +53,7 @@ namespace Project_IC.Screens {
 		}
 
 		public override void Draw(GameTime gameTime) {
-			ScreenManager.SpriteBatch.Begin();
+			ScreenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
 			gui.Draw(gameTime, ScreenManager);
 
