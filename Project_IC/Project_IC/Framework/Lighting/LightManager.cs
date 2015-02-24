@@ -29,12 +29,14 @@ namespace Project_IC.Framework.Lighting {
 		List<RadialLight> RadialLights = new List<RadialLight>();
 
 		GraphicsDevice graphicsDevice;
+		RenderTarget2D shadowTarget;
 		VertexBuffer vertexBuffer;
 		BasicEffect basicEffect;
 		Camera camera;
 		#endregion
 		public LightManager(GraphicsDevice graphicsDevice, Camera camera) {
 			this.graphicsDevice = graphicsDevice;
+			shadowTarget = new RenderTarget2D(graphicsDevice, camera.ViewportWidth, camera.ViewportHeight);
 			vertexBuffer = new VertexBuffer(graphicsDevice, typeof(VertexPositionColor), 0, BufferUsage.WriteOnly);
 			basicEffect = new BasicEffect(graphicsDevice);
 			basicEffect.World = Matrix.Identity;
@@ -45,7 +47,21 @@ namespace Project_IC.Framework.Lighting {
 		}
 
 		public void DrawShadowMask(ScreenManager screenManager) {
+			screenManager.GraphicsDevice.SetRenderTarget(shadowTarget);
+			screenManager.GraphicsDevice.Clear(Color.Black);
 			
+			var shadowSpace = new Rectangle();
+			screenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.Transformation);
+			//screenManager.SpriteBatch.Draw(screenManager.Blank, shadowSpace, null, )
+
+			screenManager.SpriteBatch.Draw(shadowTarget, Vector2.Zero, Color.White);
+			screenManager.SpriteBatch.End();
+		}
+
+		public void ResetShadowTarget() {
+			graphicsDevice.SetRenderTarget(shadowTarget);
+			graphicsDevice.Clear(Color.Black);
+			graphicsDevice.SetRenderTarget(null);
 		}
 
 		public IEnumerable<Triangle> EnumerateLightMask() {

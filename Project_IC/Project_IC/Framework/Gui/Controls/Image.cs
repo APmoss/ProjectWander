@@ -21,7 +21,7 @@ namespace Project_IC.Framework.Gui.Controls {
 		}
 
 		public override void Draw(GameTime gameTime, ScreenManager screenManager) {
-			screenManager.SpriteBatch.Draw(Texture, new Rectangle((int)GlobalPosition.X, (int)GlobalPosition.Y, Bounds.Width, Bounds.Height), PrimaryTint);
+			screenManager.SpriteBatch.Draw(Texture, Bounds, PrimaryTint);
 
 			base.Draw(gameTime, screenManager);
 		}
