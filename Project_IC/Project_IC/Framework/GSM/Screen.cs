@@ -15,6 +15,7 @@ namespace Project_IC.Framework.GSM {
 
 		public ScreenState ScreenState = ScreenState.TransitionOn;
 		protected internal bool Exiting = false;
+		protected internal bool InputFallThrough = false;
 		protected bool HasFocus = true;
 
 		protected internal ScreenManager ScreenManager;

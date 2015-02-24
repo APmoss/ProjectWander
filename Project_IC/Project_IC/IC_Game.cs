@@ -53,7 +53,8 @@ namespace Project_IC {
 		}
 
 		void InitScreens() {
-			screenManager.AddScreen(new Screens.DebugOverlay());
+			screenManager.AddScreen(new Screens.TestScreen());
+			screenManager.AddScreen(new Screens.DebugOverlay(), true);
 		}
 		#endregion
 	}

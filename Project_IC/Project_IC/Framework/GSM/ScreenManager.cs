@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
 namespace Project_IC.Framework.GSM {
 	class ScreenManager : DrawableGameComponent {
@@ -56,14 +57,21 @@ namespace Project_IC.Framework.GSM {
 			bool hasFocus = Game.IsActive;
 			bool covered = false;
 
+			Screens.DebugOverlay.DebugText.Append("-Screens (").Append(screens.Count).Append("): { ");
+
 			while (screensToUpdate.Count > 0) {
 				var screen = screensToUpdate[screensToUpdate.Count - 1];
 				screensToUpdate.RemoveAt(screensToUpdate.Count - 1);
 
+				var sw = Stopwatch.StartNew();
 				screen.Update(gameTime, hasFocus, covered);
+				sw.Stop();
 
 				if (screen.ScreenState == ScreenState.TransitionOn || screen.ScreenState == ScreenState.Active) {
-					if (hasFocus) {
+					if (screen.InputFallThrough) {
+						screen.UpdateInput(input);
+					}
+					else if (hasFocus) {
 						screen.UpdateInput(input);
 
 						hasFocus = false;
@@ -73,7 +81,11 @@ namespace Project_IC.Framework.GSM {
 						covered = true;
 					}
 				}
+
+				Screens.DebugOverlay.DebugText.Append(screen.GetType().Name).Append(" (").Append(sw.Elapsed.TotalMilliseconds).Append("ms) ");
 			}
+
+			Screens.DebugOverlay.DebugText.Append("}");
 			
 			base.Update(gameTime);
 		}
@@ -89,12 +101,23 @@ namespace Project_IC.Framework.GSM {
 		}
 
 		public void AddScreen(Screen screen) {
+			// Default to adding to end of collection
+			AddScreen(screen, false);
+		}
+		public void AddScreen(Screen screen, bool addToTop) {
 			screen.ScreenManager = this;
 			if (initialized) {
 				screen.LoadContent();
 			}
 
-			screens.Add(screen);
+			// Add to end (on top)
+			if (addToTop || screens.Count == 0) {
+				screens.Add(screen);
+			}
+			// Add to end - 1 (just below the top) 
+			else {
+				screens.Insert(screens.Count - 1, screen);
+			}
 		}
 
 		public void RemoveScreen(Screen screen) {

@@ -11,7 +11,7 @@ namespace Project_IC.Screens {
 		#region Fields
 		SpriteFont font;
 
-		int frameRate = 0;
+		float frameRate = 0;
 		int frameCounter = 0;
 		TimeSpan elapsed = TimeSpan.Zero;
 
@@ -22,6 +22,7 @@ namespace Project_IC.Screens {
 
 		public DebugOverlay() {
 			IsPopup = true;
+			InputFallThrough = true;
 		}
 
 		#region Methods
@@ -34,17 +35,17 @@ namespace Project_IC.Screens {
 		public override void Update(GameTime gameTime, bool hasFocus, bool covered) {
 			elapsed += gameTime.ElapsedGameTime;
 
-			if (elapsed.TotalSeconds > 1) {
-				elapsed -= TimeSpan.FromSeconds(1);
-				frameRate = frameCounter;
-				frameCounter = 0;
+			if (elapsed.TotalSeconds > .5) {
+				elapsed -= TimeSpan.FromSeconds(.5);
+				frameRate = (float)Math.Round((frameCounter * 2 + frameRate) / 2, 2);
+				frameCounter = 0; 
 			}
 
 			base.Update(gameTime, hasFocus, covered);
 		}
 
 		public override void UpdateInput(InputManager input) {
-			if (input.IsKeyPressed(Keys.F3)) {
+			if (AllowDebug && input.IsKeyPressed(Keys.F3)) {
 				Visible = !Visible;
 			}
 
