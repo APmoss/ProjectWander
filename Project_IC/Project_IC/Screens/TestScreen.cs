@@ -6,6 +6,7 @@ using Project_IC.Framework.Gui;
 using Project_IC.Framework.Gui.Controls;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Project_IC.Framework.Gameplay;
 
 namespace Project_IC.Screens {
 	class TestScreen : Screen {
@@ -15,7 +16,6 @@ namespace Project_IC.Screens {
 		Window pannell = new Window(0, 300, 500, 300, "Title test thing blah", true);
 		Button buttonn = new Button(100, 40, 300, "asd");
 
-		Effect effecctt;
 		Texture2D texturree;
 
 		public TestScreen() {
@@ -40,14 +40,15 @@ namespace Project_IC.Screens {
 										new Button(550, 450, 500, "8888888888888888888888"),
 										new Button(550, 500, 500, "9999999999999999999999"));
 
-			effecctt = ScreenManager.Game.Content.Load<Effect>("fx");
 			texturree = ScreenManager.Game.Content.Load<Texture2D>("textures/darkThemeGuiSheet");
-			
+
+			TmxMap tmxMap = TmxMap.Load("Content/testMap.tmx");
+
 			base.LoadContent();
 		}
 
 		public override void Update(GameTime gameTime, bool hasFocus, bool covered) {
-			for (int i = 0; i < 100000; i++) ;
+			for (int i = 0; i < 1000000; i++) ;
 
 			gui.Update(gameTime);
 
@@ -73,14 +74,6 @@ namespace Project_IC.Screens {
 			ScreenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
 			gui.Draw(gameTime, ScreenManager);
-
-			ScreenManager.SpriteBatch.End();
-
-
-
-			ScreenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, effecctt);
-
-			ScreenManager.SpriteBatch.Draw(texturree, new Rectangle(64, 64, 128, 128), null, Color.White, 0, new Vector2(0), SpriteEffects.None, 0);
 
 			ScreenManager.SpriteBatch.End();
 

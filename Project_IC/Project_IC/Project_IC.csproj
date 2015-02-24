@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="Framework\Audio\AudioManager.cs" />
     <Compile Include="Framework\Audio\Sound.cs" />
+    <Compile Include="Framework\Gameplay\TmxMap.cs" />
     <Compile Include="Framework\GSM\FontLibrary.cs" />
     <Compile Include="Framework\GSM\InputManager.cs" />
     <Compile Include="Framework\GSM\Screen.cs" />
