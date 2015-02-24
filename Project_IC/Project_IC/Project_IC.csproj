@@ -90,7 +90,8 @@
     <Compile Include="Framework\Gui\Visuals.cs" />
     <Compile Include="Framework\ParticleSystem\ParticleEmitters\ParticleEmitter.cs" />
     <Compile Include="Framework\ParticleSystem\ParticleManager.cs" />
-    <Compile Include="Framework\ParticleSystem\Particles\Particle.cs" />
+    <Compile Include="Framework\ParticleSystem\Particle.cs" />
+    <Compile Include="Framework\ParticleSystem\ParticleModifiers\ParticleModifier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="IC_Game.cs" />

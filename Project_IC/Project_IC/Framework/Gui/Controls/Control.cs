@@ -10,7 +10,6 @@ namespace Project_IC.Framework.Gui.Controls {
 		protected internal GuiManager GuiManager;
 		protected internal Control Parent;
 		protected List<Control> Children = new List<Control>();
-		protected List<Control> TempChildren = new List<Control>();
 		protected internal Visuals Visuals = new Visuals();
 
 		public Rectangle Bounds = Rectangle.Empty;
@@ -61,14 +60,10 @@ namespace Project_IC.Framework.Gui.Controls {
 		}
 
 		public virtual void Update(GameTime gameTime) {
-			TempChildren.Clear();
-			foreach (var child in Children) {
-				TempChildren.Add(child);
-			}
+			var childrenToUpdate = new Stack<Control>(Children);
 
-			while (TempChildren.Count > 0) {
-				Control child = TempChildren[TempChildren.Count - 1];
-				TempChildren.RemoveAt(TempChildren.Count - 1);
+			while (childrenToUpdate.Count > 0) {
+				Control child = childrenToUpdate.Pop();
 
 				if (!child.Hidden) {
 					child.Update(gameTime);
@@ -121,14 +116,10 @@ namespace Project_IC.Framework.Gui.Controls {
 				}
 			}
 
-			TempChildren.Clear();
-			foreach (var child in Children) {
-				TempChildren.Add(child);
-			}
+			var childrenToUpdate = new Stack<Control>(Children);
 
-			while (TempChildren.Count > 0) {
-				Control child = TempChildren[TempChildren.Count - 1];
-				TempChildren.RemoveAt(TempChildren.Count - 1);
+			while (childrenToUpdate.Count > 0) {
+				Control child = childrenToUpdate.Pop();
 
 				if (!child.Hidden) {
 					child.UpdateInput(input);
@@ -193,7 +184,6 @@ namespace Project_IC.Framework.Gui.Controls {
 		public void RemoveControls(params Control[] controls) {
 			foreach (var control in controls) {
 				Children.Remove(control);
-				TempChildren.Remove(control);
 			}
 		}
 	}

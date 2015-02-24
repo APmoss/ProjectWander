@@ -73,8 +73,7 @@ namespace Project_IC.Framework.GSM {
 		public override void Update(GameTime gameTime) {
 			input.Update();
 
-			var screensToUpdate = new List<Screen>();
-			screensToUpdate.AddRange(screens);
+			var screensToUpdate = new Stack<Screen>(screens);
 
 			bool hasFocus = Game.IsActive;
 			bool covered = false;
@@ -82,8 +81,7 @@ namespace Project_IC.Framework.GSM {
 			Screens.DebugOverlay.DebugText.Append("-Screens (").Append(screens.Count).Append("): { ");
 
 			while (screensToUpdate.Count > 0) {
-				var screen = screensToUpdate[screensToUpdate.Count - 1];
-				screensToUpdate.RemoveAt(screensToUpdate.Count - 1);
+				var screen = screensToUpdate.Pop();
 
 				Screens.DebugOverlay.DebugText.AppendLine().AppendLine(screen.GetType().Name);
 

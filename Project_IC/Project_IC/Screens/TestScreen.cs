@@ -7,16 +7,19 @@ using Project_IC.Framework.Gui.Controls;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Project_IC.Framework.Gameplay;
+using Project_IC.Framework.ParticleSystem;
 
 namespace Project_IC.Screens {
 	class TestScreen : Screen {
 		GuiManager gui;
+		ParticleManager part;
 
 		Label labbell = new Label(0, 100, "asdasdasdasdasdasdadsasdasd");
 		Window pannell = new Window(0, 300, 500, 300, "Title test thing blah", true);
 		Button buttonn = new Button(100, 40, 300, "asd");
 
 		Texture2D texturree;
+		Random r = new Random();
 
 		public TestScreen() {
 			
@@ -40,22 +43,22 @@ namespace Project_IC.Screens {
 										new Button(550, 450, 500, "8888888888888888888888"),
 										new Button(550, 500, 500, "9999999999999999999999"));
 
+			part = new ParticleManager(ScreenManager.Game.Content.Load<Texture2D>("textures/particleSheet"));
+			part.MaxParticleCount = 99999;
+
 			texturree = ScreenManager.Game.Content.Load<Texture2D>("textures/darkThemeGuiSheet");
 
 			TmxMap tmxMap = TmxMap.Load("Content/testMap.tmx");
-
-			List<int> thing = new List<int>(10);
-			for (int i = 0; i < 12; i++) {
-				thing.Add(i);
-			}
-			thing.Capacity = 5;
-
 
 			base.LoadContent();
 		}
 
 		public override void Update(GameTime gameTime, bool hasFocus, bool covered) {
-			for (int i = 0; i < 1000000; i++) ;
+			//for (int i = 0; i < 1000000; i++) ;
+
+			part.Update(gameTime);
+
+			pannell.Title = "Title test thing blah - " + part.ParticleCount;
 
 			gui.Update(gameTime);
 
@@ -73,12 +76,29 @@ namespace Project_IC.Screens {
 			if (input.IsKeyPressed(Keys.Escape)) {
 				ExitScreen();
 			}
+			if (input.IsKeyDown(Keys.P)) {
+				for (int i = 0; i < 55; i++) {
+					Vector2 v = new Vector2((float)r.NextDouble(), (float)r.NextDouble());
+					v.Normalize();
+
+					part.AddParticles(new List<Particle>() {
+						new Particle() {
+							SourceRec = new Rectangle(0, 0, 16, 16),
+							Velocity = v,
+							Scale = (float)r.NextDouble() / 2 + .25f,
+							Tint = new Color(r.Next(5, 250), r.Next(5, 250), r.Next(5, 250))
+						}
+					});
+				}
+			}
 			
 			base.UpdateInput(input);
 		}
 
 		public override void Draw(GameTime gameTime) {
 			ScreenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+
+			part.Draw(gameTime, ScreenManager);
 
 			gui.Draw(gameTime, ScreenManager);
 

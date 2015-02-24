@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Project_IC.Framework.GSM;
+using Project_IC.Framework.ParticleSystem.ParticleModifiers;
 
-namespace Project_IC.Framework.ParticleSystem.Particles {
+namespace Project_IC.Framework.ParticleSystem {
 	class Particle {
 		#region Fields
 		protected internal ParticleManager ParticleManager;
 
 		protected TimeSpan elapsedLife = TimeSpan.Zero;
+		protected List<ParticleModifier> particleModifiers
 
 		public Vector2 Position = Vector2.Zero;
 		public Vector2 Velocity = Vector2.Zero;
@@ -26,10 +28,8 @@ namespace Project_IC.Framework.ParticleSystem.Particles {
 
 		public virtual void Update(GameTime gameTime) {
 			elapsedLife += gameTime.ElapsedGameTime;
-		}
-
-		public virtual void Draw(GameTime gameTime, ScreenManager screenManager) {
-			screenManager.SpriteBatch.Draw(ParticleManager.ParticleSheet, Position, SourceRec, Tint, Rotation, Vector2.Zero, Scale, 0, 0);
+			
+			Position += Velocity;
 		}
 	}
 }
