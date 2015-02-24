@@ -49,8 +49,8 @@ namespace Project_IC.Framework.Gui.Controls {
 		}
 
 		public override void Update(GameTime gameTime) {
-			TitleBounds.X = Bounds.X;
-			TitleBounds.Y = Bounds.Y;
+			TitleBounds.X = (int)GlobalPosition.X;
+			TitleBounds.Y = (int)GlobalPosition.Y;
 
 			CloseButton.Bounds = new Rectangle(0, 0, CloseButton.Bounds.Width, CloseButton.Bounds.Height);
 			CloseButton.Bounds.X = (int)GlobalPosition.X + Bounds.Width - TitleBounds.Height / 2 - CloseButton.Bounds.Width / 2;

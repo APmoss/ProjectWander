@@ -61,7 +61,7 @@ namespace Project_IC.Screens {
 			cam.DestPosition = cam.TransPosition = new Vector2(500, 300);
 
 			texturree = ScreenManager.Game.Content.Load<Texture2D>("textures/darkThemeGuiSheet");
-			sampleBackground = ScreenManager.Game.Content.Load<Texture2D>("city");
+			sampleBackground = ScreenManager.Game.Content.Load<Texture2D>("mapOutside");
 			e = ScreenManager.Game.Content.Load<Effect>("effect");
 
 			TmxMap tmxMap = TmxMap.Load("Content/testMap.tmx");
@@ -170,7 +170,7 @@ namespace Project_IC.Screens {
 		public override void Draw(GameTime gameTime) {
 			ScreenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, e, cam.Transformation);
 			
-			ScreenManager.SpriteBatch.Draw(sampleBackground, new Rectangle(-128, -128, 1024 + 512, 1024 + 512), Color.Gray);
+			ScreenManager.SpriteBatch.Draw(sampleBackground, new Rectangle(0, 0, 2048, 1344), Color.Gray);
 
 			part.Draw(gameTime, ScreenManager);
 

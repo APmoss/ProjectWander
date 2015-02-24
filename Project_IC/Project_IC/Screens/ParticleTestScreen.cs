@@ -19,7 +19,7 @@ namespace Project_IC.Screens {
 			particleManager = new ParticleManager(ScreenManager.Game.Content.Load<Texture2D>("textures/particleSheet"));
 			particleManager.MaxParticleCount = 4096;
 
-			background = ScreenManager.Game.Content.Load<Texture2D>("city");
+			background = ScreenManager.Game.Content.Load<Texture2D>("mapOutside");
 			
 			base.LoadContent();
 		}

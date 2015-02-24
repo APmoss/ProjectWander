@@ -25,7 +25,7 @@ namespace Project_IC.Screens {
 
 			Window3 = new Window(ScreenManager.Res.X - 310, 300, 300, 300, "Window 3", true);
 			Window3.PrimaryTint = Color.Red;
-			Window3.AddControls(new Window(10, 40, 200, 200, "Inside Window", false) { PrimaryTint = Color.LightGreen });
+			Window3.AddControls(new Window(10, 40, 200, 200, "Inside Window", true) { PrimaryTint = Color.LightGreen });
 
 			Panel1 = new Panel(300, 10, 500, 80);
 			Panel1.AddControls(new Label(10, 10, "This is a Panel.", 1), new Button(200, 10, 100, "A Button"));

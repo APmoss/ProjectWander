@@ -80,6 +80,7 @@
     <Compile Include="Framework\GSM\Screen.cs" />
     <Compile Include="Framework\GSM\ScreenManager.cs" />
     <Compile Include="Framework\Gui\Controls\Button.cs" />
+    <Compile Include="Framework\Gui\Controls\CheckBox.cs" />
     <Compile Include="Framework\Gui\Controls\Control.cs" />
     <Compile Include="Framework\Gui\Controls\Image.cs" />
     <Compile Include="Framework\Gui\Controls\Label.cs" />
@@ -154,7 +155,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--

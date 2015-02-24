@@ -21,6 +21,7 @@ namespace Project_IC.Screens {
 
 		VertexBuffer vertexBuffer;
 		BasicEffect basicEffect;
+		Effect fade;
 		#endregion
 
 		public override void LoadContent() {
@@ -34,6 +35,8 @@ namespace Project_IC.Screens {
 			basicEffect.View = Matrix.CreateLookAt(Vector3.Backward, Vector3.Forward, Vector3.Up);
 			basicEffect.Projection = Matrix.CreateOrthographic(1280, 720, -1, 1);
 			basicEffect.VertexColorEnabled = true;
+
+			fade = ScreenManager.Game.Content.Load<Effect>("effect");
 			
 			base.LoadContent();
 		}
@@ -81,6 +84,7 @@ namespace Project_IC.Screens {
 
 			foreach (var pass in basicEffect.CurrentTechnique.Passes) {
 				pass.Apply();
+				//fade.CurrentTechnique.Passes[0].Apply();
 				ScreenManager.GraphicsDevice.DrawPrimitives(PrimitiveType.TriangleList, 0, vertices.Count / 3);
 			}
 

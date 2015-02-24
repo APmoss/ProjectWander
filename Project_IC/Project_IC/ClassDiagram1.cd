@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Project_IC.Framework.Gameplay.Camera" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAAAAAAAAAAAAAAQAEAAAACEAQAAAAgAASIEAAAAQ=</HashCode>
+      <FileName>Framework\Gameplay\Camera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.Gameplay.TmxMap" Collapsed="true">
+    <Position X="13.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAkAAABQAAAgAAAAAAAGAACAAAAAAEAAAAAQAAAAA=</HashCode>
+      <FileName>Framework\Gameplay\TmxMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.Gameplay.TmxTileset" Collapsed="true">
+    <Position X="16.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAIAABAAAAAAAACQAAAAgAgEAAAIAAQAAAAA=</HashCode>
+      <FileName>Framework\Gameplay\TmxMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.Gameplay.TmxLayer" Collapsed="true">
+    <Position X="14.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAgAAAAAAAAQAAAAAAAIAAAAAAAAEAAA=</HashCode>
+      <FileName>Framework\Gameplay\TmxMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.GSM.Screen" Collapsed="true">
+    <Position X="7.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEACAAABAAgAEAAAQAAQAAAAAAgAgAAQKAAIABgQ=</HashCode>
+      <FileName>Framework\GSM\Screen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.Gui.Controls.Button" Collapsed="true">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Framework\Gui\Controls\Button.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.Gui.Controls.CheckBox" Collapsed="true">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAARAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Gui\Controls\CheckBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.Gui.Controls.Control" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAARCAA8AAAQQUYCAKQAgIAIAAAAAAABAEAgE=</HashCode>
+      <FileName>Framework\Gui\Controls\Control.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.Gui.Controls.Image" Collapsed="true">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Framework\Gui\Controls\Image.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.Gui.Controls.Label" Collapsed="true">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAwAAAAIAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Framework\Gui\Controls\Label.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.Gui.Controls.Panel" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Gui\Controls\Panel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.Gui.Controls.SimpleButton" Collapsed="true">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAgAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Gui\Controls\SimpleButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.Gui.Controls.Window" Collapsed="true">
+    <Position X="5.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAIAAAAAAAA0AAAAAQAAIAAAAAAgAAAAAIAICAAgA=</HashCode>
+      <FileName>Framework\Gui\Controls\Window.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.Gui.DarkThemeVisuals" Collapsed="true">
+    <Position X="10.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Gui\DarkThemeVisuals.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.Gui.GuiManager" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAkAAAAAQAAAAAAEAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Framework\Gui\GuiManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.Gui.TealThemeVisuals" Collapsed="true">
+    <Position X="8.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Gui\TealThemeVisuals.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.Gui.Visuals" Collapsed="true">
+    <Position X="9.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAQAAACAAAAIAAAACAAA=</HashCode>
+      <FileName>Framework\Gui\Visuals.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.Lighting.EndPoint" Collapsed="true">
+    <Position X="14.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Lighting\EndPoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.Lighting.LightManager" Collapsed="true">
+    <Position X="13" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAASAABAEgAAAAgAAAgAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Lighting\LightManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.Lighting.RadialLight" Collapsed="true">
+    <Position X="13" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Framework\Lighting\RadialLight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.Lighting.Segment" Collapsed="true">
+    <Position X="13" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Lighting\Segment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.ParticleSystem.Particle" Collapsed="true">
+    <Position X="2.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQABAAAAAAAAIAgAAIAAAAAAAAAgBAABMAIAAIEAAA=</HashCode>
+      <FileName>Framework\ParticleSystem\Particle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.ParticleSystem.ParticleManager" Collapsed="true">
+    <Position X="2.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQACAAgAAAAAwQAgAgABAAAAAAAAAACAAAAAAAAAQQ=</HashCode>
+      <FileName>Framework\ParticleSystem\ParticleManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.ParticleSystem.ParticleEmitters.ParticleEmitter" Collapsed="true">
+    <Position X="4.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQABAAAAAAAAAAAAAAAAAAAAAAAgAAABIAAAAAAAAA=</HashCode>
+      <FileName>Framework\ParticleSystem\ParticleEmitters\ParticleEmitter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.ParticleSystem.ParticleEmitters.RainEmitter" Collapsed="true">
+    <Position X="3.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAABAAAAAAEAABAAAAAAgg=</HashCode>
+      <FileName>Framework\ParticleSystem\ParticleEmitters\RainEmitter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.ParticleSystem.ParticleEmitters.SnowEmitter" Collapsed="true">
+    <Position X="5.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAACAAAAAAAAAAAAAAAAAAAAAABAAgAAAgg=</HashCode>
+      <FileName>Framework\ParticleSystem\ParticleEmitters\SnowEmitter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.ParticleSystem.ParticleModifiers.BasicModifier" Collapsed="true">
+    <Position X="0.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\ParticleSystem\ParticleModifiers\BasicModifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.ParticleSystem.ParticleModifiers.ParticleModifier" Collapsed="true">
+    <Position X="0.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\ParticleSystem\ParticleModifiers\ParticleModifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Framework.ParticleSystem.ParticleModifiers.SnowModifier" Collapsed="true">
+    <Position X="0.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\ParticleSystem\ParticleModifiers\SnowModifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Screens.DebugOverlay" Collapsed="true">
+    <Position X="5.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAiAAAAQQAAAAAAACIAAIACAQAAAAAAQ=</HashCode>
+      <FileName>Screens\DebugOverlay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Screens.GuiTestScreen" Collapsed="true">
+    <Position X="14.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ADQAAAAAAAAAAAAEQAADAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\GuiTestScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Screens.ParticleTestScreen" Collapsed="true">
+    <Position X="7.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQAAQAAAAAgAkAAABAAAAAAAAAAAAAAAAAAAAIAQ=</HashCode>
+      <FileName>Screens\ParticleTestScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Screens.PrimitiveTestScreen" Collapsed="true">
+    <Position X="10" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQwgAAQFAAAAhAEAAARABAAEAAQAAAAAAAKQQEAAAQ=</HashCode>
+      <FileName>Screens\PrimitiveTestScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Screens.RandomBackground" Collapsed="true">
+    <Position X="1" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAAEAAAAgAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\RandomBackground.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Screens.TestScreen" Collapsed="true">
+    <Position X="3.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQABABAAAAAA2AEEAAQAgAAAAAAAAACAAABAFAAAAQ=</HashCode>
+      <FileName>Screens\TestScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Screens.Menus.MainMenu" Collapsed="true">
+    <Position X="12.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAEAEAAAAAgAAACAAAAQAAgABAEAACCA=</HashCode>
+      <FileName>Screens\Menus\MainMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project_IC.Screens.Menus.MenuScreen" Collapsed="true">
+    <Position X="11.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAAAAAAAAAAgAEAAAQAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Screens\Menus\MenuScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Project_IC.Framework.Lighting.Triangle" Collapsed="true">
+    <Position X="11.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAQAAAQCAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Lighting\LightManager.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
