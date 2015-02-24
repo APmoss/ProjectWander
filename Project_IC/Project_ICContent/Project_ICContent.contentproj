@@ -56,6 +56,11 @@
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
     </Compile>
+    <Compile Include="fonts\calibri.spritefont">
+      <Name>calibri</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
     <None Include="testMap.tmx">
       <Name>testMap</Name>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -71,6 +76,20 @@
   <ItemGroup>
     <Compile Include="city.png">
       <Name>city</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="textures\tealThemeGuiSheet.png">
+      <Name>tealThemeGuiSheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="pic.jpg">
+      <Name>pic</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

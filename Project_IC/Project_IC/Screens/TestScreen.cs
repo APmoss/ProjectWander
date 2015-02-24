@@ -18,7 +18,7 @@ namespace Project_IC.Screens {
 		Camera cam;
 
 		Label labbell = new Label(0, 100, "THIS IS A TEST THAT MOVES REALLY FAST THAT YOU CAN'T READ AT FULL SPEED UNTIL I PRESS A BUTTONTHAT SLOWS DOWN TIME BECAUSE I CAN CONTROL " +
-											"TIME ISN'T THAT AWESOME I BET YOUR GAME IS NOT AS COOL AS THIS ONE HAHAHAH");
+											"TIME ISN'T THAT AWESOME I BET YOUR GAME IS NOT AS COOL AS THIS ONE HAHAHAH", 1);
 		float labbellX = 0;
 		Window pannell = new Window(0, 300, 500, 300, "Title test thing blah", true);
 		Button buttonn = new Button(100, 40, 300, "asd");
@@ -28,37 +28,29 @@ namespace Project_IC.Screens {
 		Effect e;
 		Random r = new Random();
 
+		RenderTarget2D renderr;
 		VertexBuffer vb;
 		BasicEffect be;
-		VertexPositionColor[] verts = new VertexPositionColor[6] {new VertexPositionColor(new Vector3(-640, 260, -100), Color.Red),
-																	new VertexPositionColor(new Vector3(-540, 360, -100), Color.Green),
-																	new VertexPositionColor(new Vector3(0, 0, -100), Color.Blue),
-																	new VertexPositionColor(new Vector3(640, 260, -100), Color.Red),
-																	new VertexPositionColor(new Vector3(540, 360, -100), Color.Green),
-																	new VertexPositionColor(new Vector3(0, 0, -100), Color.Blue)};
+		VertexPositionColor[] verts = new VertexPositionColor[6] {new VertexPositionColor(new Vector3(-640, 260, 0), Color.Red),
+																	new VertexPositionColor(new Vector3(-540, 360, 0), Color.Green),
+																	new VertexPositionColor(new Vector3(0, 0, 0), Color.Blue),
+																	new VertexPositionColor(new Vector3(640, 260, 0), Color.Red),
+																	new VertexPositionColor(new Vector3(540, 360, 0), Color.Green),
+																	new VertexPositionColor(new Vector3(0, 0, 0), Color.Blue)};
 
 		public TestScreen() {
 			
 		}
 
 		public override void LoadContent() {
-			gui = new GuiManager(new DarkThemeVisuals(ScreenManager));
+			gui = new GuiManager(new TealThemeVisuals(ScreenManager));
 			//TODO: FIX THIS WITH SCREEN RESOLUTION
 			gui.BaseScreen.Bounds = new Rectangle(0, 0, ScreenManager.Res.X, ScreenManager.Res.Y);
 			gui.BaseScreen.Hidden = true;
 			labbell.Bounds.Height = labbell.Bounds.Width = 100;
 			pannell.AddControls(buttonn);
 
-			gui.BaseScreen.AddControls(new Label(0, 0, "Tessssssssssst"), labbell, pannell,
-										new Button(550, 100, 500, "1111111111111111111111"),
-										new Button(550, 150, 500, "2222222222222222222222"),
-										new Button(550, 200, 500, "3333333333333333333333"),
-										new Button(550, 250, 500, "4444444444444444444444"),
-										new Button(550, 300, 500, "5555555555555555555555"),
-										new Button(550, 350, 500, "6666666666666666666666"),
-										new Button(550, 400, 500, "7777777777777777777777"),
-										new Button(550, 450, 500, "8888888888888888888888"),
-										new Button(550, 500, 500, "9999999999999999999999"));
+			gui.BaseScreen.AddControls(labbell, pannell);
 
 			part = new ParticleManager(ScreenManager.Game.Content.Load<Texture2D>("textures/particleSheet"));
 			part.MaxParticleCount = 99999;
@@ -74,13 +66,15 @@ namespace Project_IC.Screens {
 
 			TmxMap tmxMap = TmxMap.Load("Content/testMap.tmx");
 
+			renderr = new RenderTarget2D(ScreenManager.GraphicsDevice, 1280, 720);
+
 			vb = new VertexBuffer(ScreenManager.GraphicsDevice, typeof(VertexPositionColor), verts.Length, BufferUsage.WriteOnly);
 
 			be = new BasicEffect(ScreenManager.GraphicsDevice);
-			be.World = Matrix.CreateTranslation(0, 0, 0);
-			be.View = Matrix.CreateLookAt(new Vector3(0, 0, 1), Vector3.Forward, Vector3.Up);
+			be.World = Matrix.Identity;
+			be.View = Matrix.CreateLookAt(Vector3.Backward, Vector3.Forward, Vector3.Up);
 			//be.Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 1280 / 720f, 0.01f, 100f);
-			be.Projection = Matrix.CreateOrthographic(1280, 720, -1000, 1000);
+			be.Projection = Matrix.CreateOrthographic(1280, 720, -1, 1);
 			//be.Projection = Matrix.CreateOrthographicOffCenter(-640f, 640f, -360f, 360f, -1000f, 1000f);
 			be.VertexColorEnabled = true;
 			
@@ -98,7 +92,7 @@ namespace Project_IC.Screens {
 			}
 			labbell.Bounds.X = (int)labbellX;
 
-			pannell.Title = "Title test thing blah - " + part.ParticleCount;
+			pannell.Title = "Title test - Particle Count: " + part.ParticleCount;
 
 			DebugOverlay.DebugText.Append(" :: TC - ").Append(Stcs.TC).AppendLine();
 
@@ -121,6 +115,9 @@ namespace Project_IC.Screens {
 			}
 			if (input.IsKeyPressed(Keys.Z)) {
 				Stcs.TC = 0;
+			}
+			if (input.IsKeyPressed(Keys.G)) {
+				pannell.Visuals = new DarkThemeVisuals(ScreenManager);
 			}
 			if (input.IsKeyPressed(Keys.F)) {
 				//labbell.Hidden = !labbell.Hidden;
@@ -190,10 +187,12 @@ namespace Project_IC.Screens {
 			vb.SetData<VertexPositionColor>(verts);
 			ScreenManager.GraphicsDevice.RasterizerState = RasterizerState.CullNone;
 			ScreenManager.GraphicsDevice.SetVertexBuffer(vb);
-			
+
+			be.World = Matrix.Invert(cam.Transformation);
+
 			foreach (var pass in be.CurrentTechnique.Passes) {
 				pass.Apply();
-				ScreenManager.GraphicsDevice.DrawPrimitives(PrimitiveType.TriangleList, 0, verts.Length / 3);
+				//ScreenManager.GraphicsDevice.DrawPrimitives(PrimitiveType.TriangleList, 0, verts.Length / 3);
 			}
 
 			base.Draw(gameTime);

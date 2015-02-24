@@ -10,7 +10,7 @@ namespace Project_IC.Framework.Gui.Controls {
 		protected internal GuiManager GuiManager;
 		protected internal Control Parent;
 		protected List<Control> Children = new List<Control>();
-		protected internal Visuals Visuals = new Visuals();
+		protected internal Visuals Visuals;
 
 		public Rectangle Bounds = Rectangle.Empty;
 		public bool Hidden = false;
@@ -52,7 +52,9 @@ namespace Project_IC.Framework.Gui.Controls {
 		public virtual void Initialize() {
 			foreach (var child in Children) {
 				child.GuiManager = this.GuiManager;
-				child.Visuals = this.Visuals;
+				if (child.Visuals == null) {
+					child.Visuals = this.Visuals;
+				}
 				child.Initialize();
 			}
 
@@ -173,7 +175,9 @@ namespace Project_IC.Framework.Gui.Controls {
 
 				if (initialized) {
 					control.GuiManager = this.GuiManager;
-					control.Visuals = this.Visuals;
+					if (control.Visuals == null) {
+						control.Visuals = this.Visuals;
+					}
 					control.Initialize();
 				}
 

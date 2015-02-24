@@ -60,12 +60,12 @@ namespace Project_IC.Framework.Gui.Controls {
 			MinimizeButton.Bounds.Y = CloseButton.Bounds.Y;
 
 			if (Minimized) {
-				Bounds.Width = (int)MathHelper.Lerp(Bounds.Width, TitleBounds.Width, .2f);
-				Bounds.Height = (int)MathHelper.Lerp(Bounds.Height, TitleBounds.Height, .2f);
+				Bounds.Width = (int)MathHelper.Lerp(Bounds.Width, TitleBounds.Width, .1f);
+				Bounds.Height = (int)MathHelper.Lerp(Bounds.Height, TitleBounds.Height, .1f);
 			}
 			else {
-				Bounds.Width = (int)MathHelper.Lerp(Bounds.Width, DestBounds.Width, .2f);
-				Bounds.Height = (int)MathHelper.Lerp(Bounds.Height, DestBounds.Height, .2f);
+				Bounds.Width = (int)MathHelper.Lerp(Bounds.Width, DestBounds.Width, .1f);
+				Bounds.Height = (int)MathHelper.Lerp(Bounds.Height, DestBounds.Height, .1f);
 			}
 
 			if (!Minimized) {

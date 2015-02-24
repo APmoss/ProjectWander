@@ -3,10 +3,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Project_IC.Framework.GSM;
 
 namespace Project_IC.Framework.Gui {
-	class DarkThemeVisuals : Visuals {
-		public DarkThemeVisuals(ScreenManager screenManager) {
-			this.Font = screenManager.FontLibrary.GetFont("segoeUI");
-			this.GuiSheet = screenManager.Game.Content.Load<Texture2D>("textures/darkThemeGuiSheet");
+	class TealThemeVisuals : Visuals {
+		public TealThemeVisuals(ScreenManager screenManager) {
+			this.Font = screenManager.FontLibrary.GetFont("segoeui");
+			this.GuiSheet = screenManager.Game.Content.Load<Texture2D>("textures/tealThemeGuiSheet");
 
 			ControlSrcRecs.Clear();
 			ControlSrcRecs.Add("buttonCorner", new Rectangle(0, 0, 16, 16));
