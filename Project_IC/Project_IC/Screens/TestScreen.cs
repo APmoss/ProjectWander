@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Project_IC.Framework.Gameplay;
 using Project_IC.Framework.ParticleSystem;
+using Project_IC.Framework.ParticleSystem.ParticleModifiers;
+using Project_IC.Framework.ParticleSystem.ParticleEmitters;
 
 namespace Project_IC.Screens {
 	class TestScreen : Screen {
@@ -19,6 +21,7 @@ namespace Project_IC.Screens {
 		Button buttonn = new Button(100, 40, 300, "asd");
 
 		Texture2D texturree;
+		Texture2D sampleBackground;
 		Random r = new Random();
 
 		public TestScreen() {
@@ -29,6 +32,7 @@ namespace Project_IC.Screens {
 			gui = new GuiManager(new DarkThemeVisuals(ScreenManager));
 			//TODO: FIX THIS WITH SCREEN RESOLUTION
 			gui.BaseScreen.Bounds = ScreenManager.Game.GraphicsDevice.Viewport.Bounds;
+			gui.BaseScreen.Hidden = true;
 			labbell.Bounds.Height = labbell.Bounds.Width = 100;
 			pannell.AddControls(buttonn);
 
@@ -46,7 +50,10 @@ namespace Project_IC.Screens {
 			part = new ParticleManager(ScreenManager.Game.Content.Load<Texture2D>("textures/particleSheet"));
 			part.MaxParticleCount = 99999;
 
+			part.AddParticleEmitters(new List<ParticleEmitter>() { new SnowEmitter(new Rectangle(0, 0, 1280 + 500, 720)) });
+
 			texturree = ScreenManager.Game.Content.Load<Texture2D>("textures/darkThemeGuiSheet");
+			sampleBackground = ScreenManager.Game.Content.Load<Texture2D>("city");
 
 			TmxMap tmxMap = TmxMap.Load("Content/testMap.tmx");
 
@@ -68,6 +75,9 @@ namespace Project_IC.Screens {
 		public override void UpdateInput(InputManager input) {
 			gui.UpdateInput(input);
 
+			if (input.IsKeyPressed(Keys.H)) {
+				gui.BaseScreen.Hidden = !gui.BaseScreen.Hidden;
+			}
 			if (input.IsKeyPressed(Keys.F)) {
 				//labbell.Hidden = !labbell.Hidden;
 				ScreenManager.Res = ScreenManager.Res == new Point(1920, 1080) ? new Point(1280, 720) : new Point(1920, 1080);
@@ -77,7 +87,7 @@ namespace Project_IC.Screens {
 				ExitScreen();
 			}
 			if (input.IsKeyDown(Keys.P)) {
-				for (int i = 0; i < 55; i++) {
+				for (int i = 0; i < 10; i++) {
 					Vector2 v = new Vector2((float)r.NextDouble(), (float)r.NextDouble());
 					v.Normalize();
 
@@ -86,7 +96,9 @@ namespace Project_IC.Screens {
 							SourceRec = new Rectangle(0, 0, 16, 16),
 							Velocity = v,
 							Scale = (float)r.NextDouble() / 2 + .25f,
-							Tint = new Color(r.Next(5, 250), r.Next(5, 250), r.Next(5, 250))
+							Tint = new Color(r.Next(5, 250), r.Next(5, 250), r.Next(5, 250)),
+							//Tint = new Color(0, 0, r.Next(100, 200)),
+							Modifiers = new List<ParticleModifier>() {new BasicModifier()}
 						}
 					});
 				}
@@ -97,6 +109,8 @@ namespace Project_IC.Screens {
 
 		public override void Draw(GameTime gameTime) {
 			ScreenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+
+			ScreenManager.SpriteBatch.Draw(sampleBackground, new Rectangle(-128, -128, 1024 + 512, 1024 + 512), Color.White);
 
 			part.Draw(gameTime, ScreenManager);
 

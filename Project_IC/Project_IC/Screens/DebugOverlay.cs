@@ -39,7 +39,7 @@ namespace Project_IC.Screens {
 				frameRate = (float)Math.Round((frameCounter * 2 + frameRate) / 2, 2);
 				frameCounter = 0; 
 			}
-
+			
 			base.Update(gameTime, hasFocus, covered);
 		}
 

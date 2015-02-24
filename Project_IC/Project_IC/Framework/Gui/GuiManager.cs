@@ -24,17 +24,23 @@ namespace Project_IC.Framework.Gui {
 		}
 
 		public void Update(GameTime gameTime) {
-			BaseScreen.Update(gameTime);
+			if (!BaseScreen.Hidden) {
+				BaseScreen.Update(gameTime);
+			}
 		}
 
 		public void UpdateInput(InputManager input) {
 			MouseRecieved = false;
 
-			BaseScreen.UpdateInput(input);
+			if (!BaseScreen.Hidden) {
+				BaseScreen.UpdateInput(input);
+			}
 		}
 
 		public void Draw(GameTime gameTime, ScreenManager screenManager) {
-			BaseScreen.Draw(gameTime, screenManager);
+			if (!BaseScreen.Hidden) {
+				BaseScreen.Draw(gameTime, screenManager);
+			}
 		}
 	}
 }

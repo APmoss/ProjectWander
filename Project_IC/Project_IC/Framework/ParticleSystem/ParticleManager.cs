@@ -9,7 +9,9 @@ namespace Project_IC.Framework.ParticleSystem {
 	class ParticleManager {
 		#region Fields
 		public Texture2D ParticleSheet;
-		int maxParticleCount = 32;
+		int maxParticleCount = 256;
+
+		public Random R = new Random();
 
 		List<Particle> particles = new List<Particle>();
 		List<ParticleEmitter> particleEmitters = new List<ParticleEmitter>();
@@ -56,7 +58,7 @@ namespace Project_IC.Framework.ParticleSystem {
 
 		public void Draw(GameTime gameTime, ScreenManager screenManager) {
 			foreach (var particle in particles) {
-				screenManager.SpriteBatch.Draw(ParticleSheet, particle.Position, particle.SourceRec, particle.Tint, particle.Rotation, Vector2.Zero, particle.Scale, 0, 0);
+				screenManager.SpriteBatch.Draw(ParticleSheet, particle.Position, particle.SourceRec, particle.Tint, particle.Rotation, new Vector2(particle.SourceRec.Width / 2, particle.SourceRec.Height / 2), particle.Scale, 0, 0);
 			}
 		}
 
@@ -78,8 +80,11 @@ namespace Project_IC.Framework.ParticleSystem {
 			}
 		}
 
-		public void RemoveParticle(Particle particle) {
+		public void Remove(Particle particle) {
 			particles.Remove(particle);
 		}
+		public void Remove(ParticleEmitter emitter) {
+			particleEmitters.Remove(emitter);
+		}	
 	}
 }
