@@ -15,6 +15,9 @@ namespace Project_IC.Screens {
 		Window pannell = new Window(0, 300, 500, 300, "Title test thing blah", true);
 		Button buttonn = new Button(100, 40, 300, "asd");
 
+		Effect effecctt;
+		Texture2D texturree;
+
 		public TestScreen() {
 			
 		}
@@ -36,6 +39,9 @@ namespace Project_IC.Screens {
 										new Button(550, 400, 500, "7777777777777777777777"),
 										new Button(550, 450, 500, "8888888888888888888888"),
 										new Button(550, 500, 500, "9999999999999999999999"));
+
+			effecctt = ScreenManager.Game.Content.Load<Effect>("fx");
+			texturree = ScreenManager.Game.Content.Load<Texture2D>("textures/darkThemeGuiSheet");
 			
 			base.LoadContent();
 		}
@@ -67,6 +73,14 @@ namespace Project_IC.Screens {
 			ScreenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
 			gui.Draw(gameTime, ScreenManager);
+
+			ScreenManager.SpriteBatch.End();
+
+
+
+			ScreenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, effecctt);
+
+			ScreenManager.SpriteBatch.Draw(texturree, new Rectangle(64, 64, 128, 128), null, Color.White, 0, new Vector2(0), SpriteEffects.None, 0);
 
 			ScreenManager.SpriteBatch.End();
 
