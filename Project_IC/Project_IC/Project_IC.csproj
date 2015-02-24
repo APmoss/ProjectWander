@@ -77,8 +77,10 @@
     <Compile Include="Framework\GSM\ScreenManager.cs" />
     <Compile Include="Framework\Gui\Controls\Button.cs" />
     <Compile Include="Framework\Gui\Controls\Control.cs" />
+    <Compile Include="Framework\Gui\Controls\Image.cs" />
     <Compile Include="Framework\Gui\Controls\Label.cs" />
     <Compile Include="Framework\Gui\Controls\Panel.cs" />
+    <Compile Include="Framework\Gui\Controls\Window.cs" />
     <Compile Include="Framework\Gui\DarkThemeVisuals.cs" />
     <Compile Include="Framework\Gui\GuiManager.cs" />
     <Compile Include="Framework\Gui\Visuals.cs" />

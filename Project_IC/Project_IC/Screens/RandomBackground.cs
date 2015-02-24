@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 namespace Project_IC.Screens {
 	class RandomBackground : Screen {
 		float squareSize = 16;
+		int loops = 100;
 		Vector2 squareDisp = Vector2.Zero;
 
 		public override void Update(GameTime gameTime, bool hasFocus, bool covered) {
@@ -17,17 +18,17 @@ namespace Project_IC.Screens {
 		}
 
 		public override void Draw(GameTime gameTime) {
-			int loops = 100;
-
 			ScreenManager.SpriteBatch.Begin();
 
 			for (int i = -2; i < loops; i++) {
 				for (int j = -2; j < loops; j++) {
 					if (Math.Abs(i % 2) == Math.Abs(j % 2)) {
-						ScreenManager.SpriteBatch.Draw(ScreenManager.Blank, new Vector2(squareSize * i + squareDisp.X, squareSize * j + squareDisp.Y), null, Color.DarkSalmon, 0, Vector2.Zero, squareSize, 0, 0);
+						ScreenManager.SpriteBatch.Draw(ScreenManager.Blank, new Vector2(squareSize * i + squareDisp.X, squareSize * j + squareDisp.Y), null,
+							Color.DarkSalmon, 0, Vector2.Zero, squareSize, 0, 0);
 					}
 					else {
-						ScreenManager.SpriteBatch.Draw(ScreenManager.Blank, new Vector2(squareSize * i + squareDisp.X, squareSize * j + squareDisp.Y), null, Color.LightSalmon, 0, Vector2.Zero, squareSize, 0, 0);
+						ScreenManager.SpriteBatch.Draw(ScreenManager.Blank, new Vector2(squareSize * i + squareDisp.X, squareSize * j + squareDisp.Y), null,
+							Color.LightSalmon, 0, Vector2.Zero, squareSize, 0, 0);
 					}
 				}
 			}

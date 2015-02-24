@@ -19,6 +19,9 @@ namespace Project_IC.Framework.Gui {
 			ControlSrcRecs.Add("cornerFocus", new Rectangle(0, 48, 16, 16));
 			ControlSrcRecs.Add("sideFocus", new Rectangle(0, 64, 16, 16));
 			ControlSrcRecs.Add("fillFocus", new Rectangle(16, 64, 16, 16));
+
+			ControlSrcRecs.Add("underlineCorner", new Rectangle(16, 0, 16, 16));
+			ControlSrcRecs.Add("underline", new Rectangle(32, 0, 16, 16));
 		}
 	}
 }

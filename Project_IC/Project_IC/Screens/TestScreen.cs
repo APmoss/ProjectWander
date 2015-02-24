@@ -20,8 +20,8 @@ namespace Project_IC.Screens {
 			gui.BaseScreen.Bounds = ScreenManager.Game.GraphicsDevice.Viewport.Bounds;
 			Label labbell = new Label(0, 100, "asdasdasdasdasdasdadsasdasd");
 			labbell.Bounds.Height = labbell.Bounds.Width = 100;
-			Panel pannell = new Panel(0, 300, 500, 300);
-			Button buttonn = new Button(100, 10, 300, "asd");
+			Window pannell = new Window(0, 300, 500, 300, "Title test thing blah", false);
+			Button buttonn = new Button(100, 40, 300, "asd");
 			pannell.AddControls(buttonn);
 
 			gui.BaseScreen.AddControls(new Label(0, 0, "Tessssssssssst"), labbell, pannell,

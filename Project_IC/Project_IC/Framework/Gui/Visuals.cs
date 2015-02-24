@@ -13,7 +13,6 @@ namespace Project_IC.Framework.Gui {
 
 		public Color TextTint = Color.White;
 		public int Padding = 5;
-
 		#endregion
 
 		public Visuals() { }
