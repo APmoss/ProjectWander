@@ -8,7 +8,6 @@ namespace Project_IC.Framework.GSM {
 	class ScreenManager : DrawableGameComponent {
 		#region Fields
 		List<Screen> screens = new List<Screen>();
-		List<Screen> screensToUpdate = new List<Screen>();
 
 		InputManager input = new InputManager();
 		GraphicsDeviceManager GraphicsDeviceManager;
@@ -74,7 +73,7 @@ namespace Project_IC.Framework.GSM {
 		public override void Update(GameTime gameTime) {
 			input.Update();
 
-			screensToUpdate.Clear();
+			var screensToUpdate = new List<Screen>();
 			screensToUpdate.AddRange(screens);
 
 			bool hasFocus = Game.IsActive;
@@ -129,14 +128,14 @@ namespace Project_IC.Framework.GSM {
 			// Default to adding to end of collection
 			AddScreen(screen, false);
 		}
-		public void AddScreen(Screen screen, bool addToTop) {
+		public void AddScreen(Screen screen, bool topmost) {
 			screen.ScreenManager = this;
 			if (initialized) {
 				screen.LoadContent();
 			}
 
 			// Add to end (on top)
-			if (addToTop || screens.Count == 0) {
+			if (topmost || screens.Count == 0) {
 				screens.Add(screen);
 			}
 			// Add to end - 1 (just below the top) 
@@ -151,7 +150,6 @@ namespace Project_IC.Framework.GSM {
 			}
 
 			screens.Remove(screen);
-			screensToUpdate.Remove(screen);
 		}
 	}
 }

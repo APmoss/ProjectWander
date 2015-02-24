@@ -88,6 +88,9 @@
     <Compile Include="Framework\Gui\DarkThemeVisuals.cs" />
     <Compile Include="Framework\Gui\GuiManager.cs" />
     <Compile Include="Framework\Gui\Visuals.cs" />
+    <Compile Include="Framework\ParticleSystem\ParticleEmitters\ParticleEmitter.cs" />
+    <Compile Include="Framework\ParticleSystem\ParticleManager.cs" />
+    <Compile Include="Framework\ParticleSystem\Particles\Particle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="IC_Game.cs" />

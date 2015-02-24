@@ -9,8 +9,8 @@ namespace Project_IC.Framework.GSM {
 	abstract class Screen {
 		#region Fields
 		public bool IsPopup = false;
-		protected TimeSpan TransitionOn = TimeSpan.FromSeconds(.5);
-		protected TimeSpan TransitionOff = TimeSpan.FromSeconds(.5);
+		protected TimeSpan TransitionOn = TimeSpan.Zero;
+		protected TimeSpan TransitionOff = TimeSpan.Zero;
 		protected float TransitionPosition = 1f;
 
 		public ScreenState ScreenState = ScreenState.TransitionOn;

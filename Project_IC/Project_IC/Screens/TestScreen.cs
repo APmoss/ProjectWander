@@ -44,6 +44,13 @@ namespace Project_IC.Screens {
 
 			TmxMap tmxMap = TmxMap.Load("Content/testMap.tmx");
 
+			List<int> thing = new List<int>(10);
+			for (int i = 0; i < 12; i++) {
+				thing.Add(i);
+			}
+			thing.Capacity = 5;
+
+
 			base.LoadContent();
 		}
 
