@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
+using System.Linq;
 using Microsoft.Xna.Framework;
+using Project_IC.Framework.GSM;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Project_IC.Framework.Gameplay {
 	class TmxMap {
@@ -59,9 +62,16 @@ namespace Project_IC.Framework.Gameplay {
 						Tilesets.Add(ts.Name, ts);
 						break;
 					case "layer":
-
+						var l = new TmxLayer(subElement);
+						Layers.Add(l.Name, l);
 						break;
 				}
+			}
+		}
+
+		public void Draw(ScreenManager screenManager) {
+			foreach (var layer in Layers) {
+				layer.Value.Draw(screenManager, Tilesets.Values.ToList());
 			}
 		}
 
@@ -93,6 +103,8 @@ namespace Project_IC.Framework.Gameplay {
 		public string ImageSrc = string.Empty;
 		public int ImageWidth = 0;
 		public int ImageHeight = 0;
+
+		public Texture2D Texture;
 		#endregion
 
 		public TmxTileset(XElement tilesetElement) {
@@ -130,6 +142,42 @@ namespace Project_IC.Framework.Gameplay {
 	}
 
 	class TmxLayer {
+		#region Fields
+		public string Name = string.Empty;
+		public float Opacity = 1;
+		public bool Hidden = false;
 
+		public List<short> Tiles = new List<short>();
+		#endregion
+
+		public TmxLayer(XElement layerElement) {
+			foreach (var attribute in layerElement.Attributes()) {
+				switch (attribute.Name.LocalName.ToLower()) {
+					case "name":
+						Name = attribute.Value;
+						break;
+					case "opacity":
+						Opacity = float.Parse(attribute.Value);
+						break;
+					case "visible":
+						Hidden = attribute.Value == "0";
+						break;
+				}
+			}
+
+			if (layerElement.Element("data") != null) {
+				var data = layerElement.Element("data");
+
+				foreach (var subElement in data.Elements()) {
+					if (subElement.Name.LocalName.ToLower() == "tile") {
+						Tiles.Add(short.Parse(subElement.Attribute("gid").Value));
+					}
+				}
+			}
+		}
+
+		public void Draw(ScreenManager screenManager, List<TmxTileset> tilesets) {
+			
+		}
 	}
 }

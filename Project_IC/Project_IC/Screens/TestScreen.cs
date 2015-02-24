@@ -15,6 +15,7 @@ namespace Project_IC.Screens {
 	class TestScreen : Screen {
 		GuiManager gui;
 		ParticleManager part;
+		Camera cam;
 
 		Label labbell = new Label(0, 100, "asdasdasdasdasdasdadsasdasd");
 		Window pannell = new Window(0, 300, 500, 300, "Title test thing blah", true);
@@ -50,7 +51,9 @@ namespace Project_IC.Screens {
 			part = new ParticleManager(ScreenManager.Game.Content.Load<Texture2D>("textures/particleSheet"));
 			part.MaxParticleCount = 99999;
 
-			part.AddParticleEmitters(new List<ParticleEmitter>() { new SnowEmitter(new Rectangle(0, 0, 1280 + 500, 720)) });
+			part.AddParticleEmitters(new List<ParticleEmitter>() { new SnowEmitter(new Rectangle(0, -200, 1280 + 600, 720)) });
+
+			cam = new Camera(ScreenManager.Res.X, ScreenManager.Res.Y);
 
 			texturree = ScreenManager.Game.Content.Load<Texture2D>("textures/darkThemeGuiSheet");
 			sampleBackground = ScreenManager.Game.Content.Load<Texture2D>("city");
@@ -62,6 +65,8 @@ namespace Project_IC.Screens {
 
 		public override void Update(GameTime gameTime, bool hasFocus, bool covered) {
 			//for (int i = 0; i < 1000000; i++) ;
+
+			cam.Update();
 
 			part.Update(gameTime);
 
@@ -103,16 +108,34 @@ namespace Project_IC.Screens {
 					});
 				}
 			}
-			
+
+			if (input.IsKeyDown(Keys.W)) {
+				cam.DestPosition.Y -= 5;
+			}
+			if (input.IsKeyDown(Keys.A)) {
+				cam.DestPosition.X -= 5;
+			}
+			if (input.IsKeyDown(Keys.S)) {
+				cam.DestPosition.Y += 5;
+			}
+			if (input.IsKeyDown(Keys.D)) {
+				cam.DestPosition.X += 5;
+			}
+
 			base.UpdateInput(input);
 		}
 
 		public override void Draw(GameTime gameTime) {
-			ScreenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+			ScreenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null, cam.Transformation);
 
-			ScreenManager.SpriteBatch.Draw(sampleBackground, new Rectangle(-128, -128, 1024 + 512, 1024 + 512), Color.White);
+			ScreenManager.SpriteBatch.Draw(sampleBackground, new Rectangle(-128, -128, 1024 + 512, 1024 + 512), Color.Gray);
 
 			part.Draw(gameTime, ScreenManager);
+
+			ScreenManager.SpriteBatch.End();
+
+
+			ScreenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
 
 			gui.Draw(gameTime, ScreenManager);
 
